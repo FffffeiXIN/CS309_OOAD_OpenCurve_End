@@ -1,0 +1,29 @@
+//配置文件信息
+server:
+  port: 8888
+
+spring:
+  application:
+    name: education
+  profiles:
+    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: org.postgresql.Driver
+      url:
+      username:
+      password:
+
+      #配置连接池大小参数
+      initial-size: 15
+      min-idle: 10
+      max-active: 50
+
+      #配置最长等待时间
+      max-wait: 30000
+
+      #连接最小生存时间
+      min-evictable-idle-time-millis: 30000
+
+
