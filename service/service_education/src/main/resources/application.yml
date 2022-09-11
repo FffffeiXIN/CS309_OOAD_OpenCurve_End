@@ -1,6 +1,5 @@
-//配置文件信息
 server:
-  port: 8888
+  port: 8080
 
 spring:
   application:
@@ -11,9 +10,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: org.postgresql.Driver
-      url:
-      username:
-      password:
+      url: jdbc:postgresql://localhost:5432/opencurve
+      username: postgres
+      password: 666666
 
       #配置连接池大小参数
       initial-size: 15
@@ -25,5 +24,9 @@ spring:
 
       #连接最小生存时间
       min-evictable-idle-time-millis: 30000
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 
 

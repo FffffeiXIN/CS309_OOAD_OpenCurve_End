@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Teacher implements User{
-
+    
 
 }
