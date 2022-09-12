@@ -7,6 +7,7 @@ import lombok.Data;
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Teacher implements User{
     int id;
+    String password;
     String name;
     String department;
 
@@ -16,6 +17,12 @@ public class Teacher implements User{
 
     public void setId(int id) {
         this.id = id;
+    }
+    public boolean comparePassword(String password) {
+        return password.equals(this.password);
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
