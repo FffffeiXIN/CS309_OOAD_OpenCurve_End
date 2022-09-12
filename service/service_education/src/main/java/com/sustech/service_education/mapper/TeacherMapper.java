@@ -10,4 +10,6 @@ public interface TeacherMapper {
 
     List<Teacher> queryAll();
 
+    Teacher queryTeacher(int id);
+
 }

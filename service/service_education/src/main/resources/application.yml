@@ -1,11 +1,5 @@
 server:
   port: 8080
-
-
-
-
-
-
 spring:
   application:
     name: education
@@ -15,9 +9,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://localhost:5432/opencurve
+      url: jdbc:postgresql://10.16.4.246:5432/opencurve
       username: postgres
-      password: 666666
+      password: 123456
 
       #配置连接池大小参数
       initial-size: 15
@@ -34,6 +28,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+
+
+
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.sustech.service_education.entity
