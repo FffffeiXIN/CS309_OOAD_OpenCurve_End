@@ -1,12 +1,18 @@
 package com.sustech.service_education.service.impl;
 
 import com.sustech.service_education.entity.Teacher;
+import com.sustech.service_education.mapper.TeacherMapper;
 import com.sustech.service_education.service.TeacherEducationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class TeacherEducationServiceImpl implements TeacherEducationService {
+
+    @Autowired
+    TeacherMapper teacherMapper;
+
     @Override
     public boolean delete(Teacher teacher) {
         return false;
@@ -24,6 +30,6 @@ public class TeacherEducationServiceImpl implements TeacherEducationService {
 
     @Override
     public List<Teacher> queryAll() {
-        return null;
+        return teacherMapper.queryAll();
     }
 }

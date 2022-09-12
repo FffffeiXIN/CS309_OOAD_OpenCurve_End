@@ -1,6 +1,11 @@
 server:
   port: 8080
 
+
+
+
+
+
 spring:
   application:
     name: education
@@ -24,9 +29,15 @@ spring:
 
       #连接最小生存时间
       min-evictable-idle-time-millis: 30000
+
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.sustech.service_education.entity
+
 
 
 
