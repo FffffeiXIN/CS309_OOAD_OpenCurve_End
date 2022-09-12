@@ -32,4 +32,12 @@ public class TeacherEducationController extends BaseEducationController{
         return Result.error();
     }
 
+    public Result login(int id,String passwd){
+        return Result.error();
+    }
+
+    public Result register(User user){
+        return Result.error();
+    }
+
 }

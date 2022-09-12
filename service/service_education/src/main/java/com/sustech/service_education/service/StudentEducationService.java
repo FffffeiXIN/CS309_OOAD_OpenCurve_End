@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface StudentEducationService {
-
+    boolean chooseCourse(int id);
 
 
 }
