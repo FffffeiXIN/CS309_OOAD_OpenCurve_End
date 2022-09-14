@@ -8,12 +8,14 @@ import com.sustech.service_education.service.TeacherEducationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/teacher")
 @Api(value = "接口测试类" , tags = "教师接口测试类")
 public class TeacherEducationController extends BaseEducationController{
