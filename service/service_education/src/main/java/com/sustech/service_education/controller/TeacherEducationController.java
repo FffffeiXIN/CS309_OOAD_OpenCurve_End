@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/teacher")
 @Api(value = "接口测试类" , tags = "教师接口测试类")
 public class TeacherEducationController extends BaseEducationController{
