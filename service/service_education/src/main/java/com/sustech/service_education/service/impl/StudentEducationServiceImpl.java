@@ -23,7 +23,6 @@ public class StudentEducationServiceImpl implements StudentEducationService {
     //可以区分下密码错误和没有此用户
     public boolean checkStudent(int id, String passwd) {
         Student res = studentMapper.select(id);
-        if(res.getPasswd().equals(passwd)) return true;
-        return false;
+        return res.comparePassword(passwd);
     }
 }

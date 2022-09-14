@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Student implements User{
     int id;
     String password;
+    String name;
+    String department;
 
     public int getId() {
         return id;
@@ -14,12 +16,26 @@ public class Student implements User{
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getPasswd() {
-        return password;
+    public boolean comparePassword(String password) {
+        return password.equals(this.password);
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setPasswd(String passwd) {
-        this.password = passwd;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

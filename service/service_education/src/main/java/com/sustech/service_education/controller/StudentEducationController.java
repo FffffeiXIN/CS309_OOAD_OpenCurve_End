@@ -2,21 +2,19 @@ package com.sustech.service_education.controller;
 
 
 import com.sustech.commonutils.Result;
-import com.sustech.service_education.entity.Teacher;
 import com.sustech.service_education.entity.User;
 import com.sustech.service_education.service.StudentEducationService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/student")
+@Api(value = "接口测试类",tags = "学生接口测试类")
 public class StudentEducationController extends BaseEducationController {
 
 
@@ -26,15 +24,12 @@ public class StudentEducationController extends BaseEducationController {
     public Result chooseCourse(){
         return Result.error();
     }
+
     @PostMapping("login")
-    @ApiOperation(value = "学生登陆")
+    @ApiOperation(value = "学生登录")
     public Result login(int id,String passwd){
-        boolean flag = studentService.checkStudent(id,passwd);
-        if(flag) return Result.ok();
-        else return Result.error();
+        return Result.error();
     }
-
-
 
     public Result register(User user){
         return Result.error();
