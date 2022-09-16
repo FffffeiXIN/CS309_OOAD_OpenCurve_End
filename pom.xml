@@ -8,6 +8,7 @@
         <module>common/common_utils</module>
         <module>service</module>
         <module>service/service_education</module>
+        <module>service/cloud_storage</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: cloud_storage
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+aliyun:
+  keyid: LTAI5tBpdi38sJNa7iZaKzP7
+  keysecret: sVTw4QTQRJVQOOc5vVQ8ECKN0Iju1G
+  bucketname: opencurve-picture
+  endpoint: oss-cn-shenzhen.aliyuncs.com
