@@ -2,8 +2,14 @@ package com.sustech.commonutils.enums;
 
 public enum Code {
 
-    UnknownError("未知错误",8000),
-    RESOURCE_NOT_FOUND("未找到资源",404);
+    UNKNOWN_ERROR("未知错误",8000),
+    RESOURCE_NOT_FOUND("未找到资源",404),
+    DUMPLICATE_REGISTERY("数据库中已有相同id",1000),
+    MULTIPLE_LOGIN_ATTEMPT("尝试登录次数过多",2000),
+    LOGIN_ERROR("登录信息错误",2001),
+
+    N0_SERVICE_ERROR("没有对应的服务",3000);
+
 
     private final String mess;
     private final Integer code;
