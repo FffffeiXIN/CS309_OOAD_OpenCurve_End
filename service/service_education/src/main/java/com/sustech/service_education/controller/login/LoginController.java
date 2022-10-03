@@ -18,7 +18,7 @@ public class LoginController {
         if(LoginService.loginService.containsKey(loginType)){
             loginService=LoginService.loginService.get(loginType);
         }else {
-            String path="com.sustech.service_education.service.login."+loginType;
+            String path="com.sustech.service_education.service.login.impl."+loginType;
             try {
                 loginService= (LoginService) ReflectUtils.createBean(path);
                 LoginService.loginService.put(loginType,loginService);
