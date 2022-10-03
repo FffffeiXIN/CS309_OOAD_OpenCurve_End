@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/education/login")
 public class LoginController {
-    @GetMapping("student")
+    @GetMapping("user")
     public Result studentLogin(String userid,String content,String loginType){
         LoginService loginService;
         if(LoginService.loginService.containsKey(loginType)){
@@ -27,11 +27,6 @@ public class LoginController {
             }
         }
         return loginService.login(userid,content);
-    }
-
-    @GetMapping("teacher")
-    public Result teacherLogin(String userid,String content,String loginType){
-        return Result.error();
     }
 
 }
