@@ -11,22 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/cloud_storage/file")
 @Api(value = "接口测试类", tags = "云储存测试类")
 public class FileUploadingController {
-
     @Autowired
     private FileUploadingService fileUploadingService;
-
-
     @ApiOperation(value = "上传文件至云端")
     @PostMapping("uploading")
     public Result upload(MultipartFile file){
         String url= fileUploadingService.upload(file);
         return Result.ok().addData("url",url);
     }
-
-
 }

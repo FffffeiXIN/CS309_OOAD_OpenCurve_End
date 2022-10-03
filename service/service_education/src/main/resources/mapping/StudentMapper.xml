@@ -12,6 +12,8 @@
     </select>
 
 
+
+
     <insert id="insert">
         insert into student (id,password,grade) values (#{id},#{password},#{grade});
     </insert>
