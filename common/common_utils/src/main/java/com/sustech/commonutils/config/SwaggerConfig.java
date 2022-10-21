@@ -27,7 +27,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.southsoft.SmartGmis.controller"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .enable(true);
     }
 
     private ApiInfo apiInfo() {
