@@ -7,7 +7,6 @@ public enum Code {
     DUMPLICATE_REGISTERY("数据库中已有相同id",1000),
     MULTIPLE_LOGIN_ATTEMPT("尝试登录次数过多",2000),
     LOGIN_ERROR("登录信息错误",2001),
-
     N0_SERVICE_ERROR("没有对应的服务",3000);
 
 
