@@ -18,6 +18,4 @@ public class VideoController {
     public Result getVideo(String key){
         return videoService.getVideo(key);
     }
-
-
 }
