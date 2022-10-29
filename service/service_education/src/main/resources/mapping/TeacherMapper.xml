@@ -8,11 +8,17 @@
 <!--        <result column="" property=""/>-->
 <!--    </resultMap>-->
 
-    <select id="queryAll" resultType="com.sustech.service_education.entity.Teacher">
+    <select id="queryAllTeachers" resultType="com.sustech.service_education.entity.Teacher">
         select * from teacher
     </select>
 
 
+    <select id="selectTeacherById" resultType="com.sustech.service_education.entity.Teacher">
+        select * from teacher where id = #{id};
+    </select>
 
+    <insert id="insert">
+        insert into teacher (id,password) values (#{id},#{password});
+    </insert>
 
 </mapper>

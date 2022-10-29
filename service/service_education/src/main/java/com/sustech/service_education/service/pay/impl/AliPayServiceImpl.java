@@ -23,6 +23,5 @@ public class AliPayServiceImpl extends AbstractPaymentService {
 
     @Override
     public void doPurchase() {
-
     }
 }

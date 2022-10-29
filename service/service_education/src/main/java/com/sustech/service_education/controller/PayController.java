@@ -27,7 +27,4 @@ public class PayController {
         data.put("order",orderId);
         return Result.ok().code(200).message("支付成功!").data(data);
     }
-
-
-
 }
