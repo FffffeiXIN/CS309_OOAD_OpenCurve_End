@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
-public class Teacher extends AbstractUser{
+public class Teacher{
     Integer id;
     String name;
     String department;
-
     Integer password;
+    Integer failTime =0;
 }

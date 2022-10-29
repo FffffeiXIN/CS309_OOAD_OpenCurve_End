@@ -2,7 +2,6 @@ package com.sustech.service_education.mapper;
 
 
 import com.sustech.service_education.entity.Student;
-import com.sustech.service_education.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,8 +16,4 @@ public interface StudentMapper {
     List<Student> queryAllStudents();
 
     void updateStudent(Student student);
-
-    void updateTeacher(Teacher teacher);
-
-
 }
