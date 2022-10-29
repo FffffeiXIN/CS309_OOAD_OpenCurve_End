@@ -8,5 +8,6 @@ public class SuperManager {
     Integer id = null;
     String name = null;
     String passwd = null;
-    Integer failTime =0;
+    Integer failTime = 0;
 }
+
