@@ -3,6 +3,7 @@ package com.sustech.commonhandler;
 
 import com.sustech.commonhandler.exception.RepeatRegisterException;
 import com.sustech.commonhandler.exception.ServiceNotFoundException;
+import com.sustech.commonhandler.exception.SourceNotFoundException;
 import com.sustech.commonutils.Result;
 import com.sustech.commonutils.enums.Code;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,5 +24,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceNotFoundException.class)
     public Result ServiceNotFoundError(){
         return Result.error().code(Code.N0_SERVICE_ERROR.getCode()).message(Code.N0_SERVICE_ERROR.getMess());
+    }
+
+    @ExceptionHandler(SourceNotFoundException.class)
+    public Result SourceNotFoundError(){
+        return Result.error().code(Code.RESOURCE_NOT_FOUND.getCode()).message(Code.RESOURCE_NOT_FOUND.getMess());
     }
 }
