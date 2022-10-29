@@ -3,7 +3,6 @@ package com.sustech.service_education.controller;
 import com.sustech.commonhandler.exception.ServiceNotFoundException;
 import com.sustech.commonutils.ReflectUtils;
 import com.sustech.commonutils.Result;
-import com.sustech.commonutils.enums.Code;
 import com.sustech.service_education.service.login.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +21,7 @@ public class LoginController {
         if(LoginService.loginService.containsKey(loginType)){
             loginService=LoginService.loginService.get(loginType);
         }else {
-            String path="com.sustech.service_education.service.login.impl."+loginType;
+            String path="com.sustech.service_education.service.login.impl."+loginType+"Impl";
             try {
                 loginService= (LoginService) ReflectUtils.createBean(path);
                 LoginService.loginService.put(loginType,loginService);
