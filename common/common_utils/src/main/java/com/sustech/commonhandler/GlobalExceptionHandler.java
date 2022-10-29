@@ -1,6 +1,7 @@
 package com.sustech.commonhandler;
 
 
+import com.sustech.commonhandler.exception.InsertionFailureException;
 import com.sustech.commonhandler.exception.RepeatRegisterException;
 import com.sustech.commonhandler.exception.ServiceNotFoundException;
 import com.sustech.commonhandler.exception.SourceNotFoundException;
@@ -19,6 +20,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RepeatRegisterException.class)
     public Result RepeatRegisterError(){
         return Result.error().code(Code.DUMPLICATE_REGISTERY.getCode()).message(Code.DUMPLICATE_REGISTERY.getMess());
+    }
+    
+    @ExceptionHandler(InsertionFailureException.class)
+    public Result InsertionFailureError(){
+        return Result.error().code(Code.INSERTION_FAILURE.getCode()).message(Code.INSERTION_FAILURE.getMess());
     }
 
     @ExceptionHandler(ServiceNotFoundException.class)
