@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/education/login")
 public class LoginController {
     @GetMapping("user")
-    public Result studentLogin(String userid,String content,String loginType){
+    public Result login(String userid,String content,String loginType){
         LoginService loginService;
         if(LoginService.loginService.containsKey(loginType)){
             loginService=LoginService.loginService.get(loginType);
