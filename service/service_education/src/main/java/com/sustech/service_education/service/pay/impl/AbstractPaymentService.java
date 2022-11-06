@@ -32,6 +32,8 @@ public abstract class AbstractPaymentService implements PayService {
             order.setFinalUpdateTime(LocalDate.now().toString());
             order.setUserId(userId);
             order.setCourseId(courseId);
+            doCreateOrder(order);
+            payMapper.addOrder(order);
             Map<String,Object> data = new HashMap<>();
             data.put("id",orderId);
             return Result.ok().message("订单创建成功").code(200).data(data);
