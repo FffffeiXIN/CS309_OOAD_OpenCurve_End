@@ -14,11 +14,11 @@ public class VideoController {
     VideoService videoService;
 
     @GetMapping("/url")
-    public Result getVideo(String course_id, int session){
+    public Result getVideo(String course_id, Integer session){
         return videoService.getVideo(course_id, session);
     }
     @PostMapping("/uploadVideoMeta")
-    public Result uploadVideoMeta(String course_id, int session, String url) {
+    public Result uploadVideoMeta(String course_id, Integer session, String url) {
         return videoService.storeVideo(course_id, session, url);
     }
 
