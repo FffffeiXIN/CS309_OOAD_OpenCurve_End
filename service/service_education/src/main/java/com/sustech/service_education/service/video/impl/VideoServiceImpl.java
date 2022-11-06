@@ -19,7 +19,7 @@ public class VideoServiceImpl implements VideoService {
     VideoMapper mapper;
 
     @Override
-    public Result getVideo(String course_id, int session) {
+    public Result getVideo(String course_id, Integer session) {
         String url = mapper.getURLByKey(course_id, session);
         if(url==null||url.isEmpty()){
             throw new SourceNotFoundException();
@@ -30,8 +30,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result storeVideo(String course_id, int session, String url) {
-        int success = mapper.insertVideo(course_id, session, url);
+    public Result storeVideo(String course_id, Integer session, String url, String title, String description) {
+        int success = mapper.insertVideo(course_id, session, url, title, description);
         if(success == 0) {
             throw new InsertionFailureException();
         } else {

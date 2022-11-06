@@ -9,6 +9,6 @@
     </select>
     
     <insert id="insertVideo">
-        insert into video (course_id, session, url) values (#{course_id}, #{session}, #{url});
+        insert into video (course_id, session, url, title, description) values (#{course_id}, #{session}, #{url}, #{title}, #{description});
     </insert>
 </mapper>
