@@ -7,6 +7,8 @@ import com.sustech.service_education.mapper.StudentMapper;
 import com.sustech.service_education.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.mail.MessagingException;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,14 +18,23 @@ public abstract class AbstractStudentLogin implements LoginService {
     StudentMapper mapper;
 
     @Override
-    public Result login(String username, String content) {
+    public Result login(String username, String content) throws UnknownHostException, MessagingException {
         Student student=mapper.selectStudentById(username);
         //检查学生状态
-        Result result=doLogin(student,content);
-        if(!result.isState()) return fail(student);
-        else return success(student);
+        if (student == null){
+            return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此用户不存在");
+        }
+        if (!student.getStatus().equals("normal")){
+            return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此账号被冻结");
+        }
+
+        Result result = doLogin(student,content);
+//        if(!result.isState()) return fail(student);
+//        else return success(student);
+        result.addData("user",student); // 返回验证码+学生
+        return result;
     }
-    abstract Result doLogin(Student student,String content);
+    abstract Result doLogin(Student student,String content) throws UnknownHostException, MessagingException;
 
     private Result success(Student student){
         Map<String,Object> map=new HashMap<>();
