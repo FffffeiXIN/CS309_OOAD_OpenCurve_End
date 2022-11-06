@@ -11,4 +11,13 @@
     <insert id="insertVideo">
         insert into video (course_id, session, url, title, description) values (#{course_id}, #{session}, #{url}, #{title}, #{description});
     </insert>
+
+    <select id="getSessionsCount" resultType="java.lang.Integer">
+        select count(*) as cnt from video where course_id = #{course_id};
+    </select>
+
+    <select id="getSessionInfo" resultType="com.sustech.service_education.entity.Video">
+        select * from video where course_id = #{course_id} and session = #{session};
+    </select>
+
 </mapper>
