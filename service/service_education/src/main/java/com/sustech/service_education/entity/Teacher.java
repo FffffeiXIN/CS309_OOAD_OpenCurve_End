@@ -10,5 +10,6 @@ public class Teacher{
     String name;
     String department;
     String password;
+    String status;
     Integer failTime =0;
 }

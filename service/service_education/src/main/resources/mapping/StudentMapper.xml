@@ -13,7 +13,7 @@
 
 
     <insert id="insert">
-        insert into student (id,password,grade) values (#{id},#{password},#{grade});
+        insert into student (id,password,status) values (#{id},#{password},'normal');
     </insert>
 
 

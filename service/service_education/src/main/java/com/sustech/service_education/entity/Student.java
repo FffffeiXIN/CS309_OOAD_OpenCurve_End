@@ -11,6 +11,7 @@ public class Student{
     String name;
     String department;
     String grade;
+    String status;
     boolean isLock;
     Integer failTime =0;
     public boolean comparePassword(String password) {
