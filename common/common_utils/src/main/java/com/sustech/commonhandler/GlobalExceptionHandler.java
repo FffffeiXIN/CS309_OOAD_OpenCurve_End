@@ -1,11 +1,7 @@
 package com.sustech.commonhandler;
 
 
-import com.sustech.commonhandler.exception.DuplicateOrderException;
-import com.sustech.commonhandler.exception.InsertionFailureException;
-import com.sustech.commonhandler.exception.RepeatRegisterException;
-import com.sustech.commonhandler.exception.ServiceNotFoundException;
-import com.sustech.commonhandler.exception.SourceNotFoundException;
+import com.sustech.commonhandler.exception.*;
 import com.sustech.commonutils.Result;
 import com.sustech.commonutils.enums.Code;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,6 +32,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SourceNotFoundException.class)
     public Result SourceNotFoundError(){
         return Result.error().code(Code.RESOURCE_NOT_FOUND.getCode()).message(Code.RESOURCE_NOT_FOUND.getMess());
+    }
+
+    @ExceptionHandler(InsufficientPermissionException.class)
+    public Result InsufficientPermissionError(){
+        return Result.error().code(Code.INSUFFICIENT_PERMISSION_ERROR.getCode()).message(Code.INSUFFICIENT_PERMISSION_ERROR.getMess());
     }
 
     @ExceptionHandler(DuplicateOrderException.class)

@@ -17,7 +17,8 @@ public enum Code {
     MULTIPLE_LOGIN_ATTEMPT("尝试登录次数过多",2000),
     LOGIN_ERROR("登录信息错误",2001),
     N0_SERVICE_ERROR("没有对应的服务",3000),
-    DUPLICATE_ORDER_ERROR("订单已存在",4000);
+    DUPLICATE_ORDER_ERROR("订单已存在",4000),
+    INSUFFICIENT_PERMISSION_ERROR("权限不足",3001);
 
 
     private final String mess;
