@@ -6,7 +6,7 @@ import java.util.List;
 public interface TeacherMapper {
     Teacher selectTeacherById(int id);
 
-    void insert(Teacher student);
+    void insert(Teacher teacher);
 
     List<Teacher> queryAllTeachers();
 

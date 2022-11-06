@@ -17,4 +17,6 @@ public class Order {
 
     String payType;
 
+    String status;
+
 }

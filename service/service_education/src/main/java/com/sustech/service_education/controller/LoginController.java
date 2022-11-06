@@ -6,6 +6,7 @@ import com.sustech.commonutils.Result;
 import com.sustech.service_education.service.login.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"接口测试"})
 public class LoginController {
     @GetMapping("user")
-    @ApiOperation(value = "学生登录模块测试")
-    public Result studentLogin(String userid,String content,String loginType){
+    @ApiOperation(value = "登录模块测试")
+    public Result login(String userid,String content,String loginType){
         LoginService loginService;
         if(LoginService.loginService.containsKey(loginType)){
             loginService=LoginService.loginService.get(loginType);

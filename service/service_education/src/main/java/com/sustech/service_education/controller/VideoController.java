@@ -17,9 +17,9 @@ public class VideoController {
     public Result getVideo(String course_id, int session){
         return videoService.getVideo(course_id, session);
     }
-
     @PostMapping("/uploadVideoMeta")
     public Result uploadVideoMeta(String course_id, int session, String url) {
         return videoService.storeVideo(course_id, session, url);
     }
+
 }
