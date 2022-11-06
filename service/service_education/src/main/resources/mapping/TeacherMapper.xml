@@ -13,8 +13,8 @@
     </select>
 
 
-    <select id="selectTeacherById" resultType="com.sustech.service_education.entity.Teacher">
-        select * from teacher where id = #{id};
+    <select id="selectTeacherByEmail" resultType="com.sustech.service_education.entity.Teacher">
+        select * from teacher where id = #{Email};
     </select>
 
     <insert id="insert">

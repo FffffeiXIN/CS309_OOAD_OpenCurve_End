@@ -17,7 +17,7 @@ public abstract class AbstractStudentLogin implements LoginService {
 
     @Override
     public Result login(String username, String content) {
-        Student student=mapper.selectStudentById(Integer.parseInt(username));
+        Student student=mapper.selectStudentById(username);
         //检查学生状态
         Result result=doLogin(student,content);
         if(!result.isState()) return fail(student);

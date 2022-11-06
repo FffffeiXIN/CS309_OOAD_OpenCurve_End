@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface StudentMapper {
 
-    Student selectStudentById(int id);
+    Student selectStudentById(String id);
 
     void insert(Student student);
 

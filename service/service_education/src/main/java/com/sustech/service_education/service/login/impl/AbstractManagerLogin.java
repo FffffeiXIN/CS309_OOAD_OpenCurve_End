@@ -18,7 +18,7 @@ public abstract class AbstractManagerLogin implements LoginService {
 
     @Override
     public Result login(String username, String content) {
-        SuperManager manager=mapper.selectManagerById(Integer.parseInt(username));
+        SuperManager manager=mapper.selectManagerById(username);
         //检查学生状态
         Result result=doLogin(manager,content);
         if(!result.isState()) return fail(manager);
