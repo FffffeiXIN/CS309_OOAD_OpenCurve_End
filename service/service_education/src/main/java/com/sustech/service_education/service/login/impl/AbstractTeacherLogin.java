@@ -18,7 +18,7 @@ public abstract class AbstractTeacherLogin implements LoginService {
 
     @Override
     public Result login(String username, String content) {
-        Teacher teacher = mapper.selectTeacherById(Integer.parseInt(username));
+        Teacher teacher = mapper.selectTeacherByEmail(username);
         //检查老师状态
         Result result=doLogin(teacher,content);
         if(!result.isState()) return fail(teacher);

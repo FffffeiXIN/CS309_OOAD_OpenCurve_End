@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Teacher{
-    Integer id;
+    String id;
     String name;
     String department;
-    Integer password;
+    String password;
     Integer failTime =0;
 }
