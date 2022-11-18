@@ -1,7 +1,7 @@
-package com.sustech.banner.service;
+package com.sustech.service_banner.service;
 
-import com.sustech.banner.entity.Banner;
-import com.sustech.banner.entity.Page;
+import com.sustech.service_banner.entity.Banner;
+import com.sustech.service_banner.entity.Page;
 import com.sustech.commonutils.Result;
 
 public interface BannerService {

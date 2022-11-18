@@ -1,4 +1,4 @@
-package com.sustech.banner.entity;
+package com.sustech.service_banner.entity;
 
 import lombok.Data;
 

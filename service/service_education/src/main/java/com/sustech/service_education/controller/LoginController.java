@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
+import java.net.UnknownHostException;
+
 @RestController
 @RequestMapping("/education/login")
 @Api(tags = {"接口测试"})
 public class LoginController {
     @GetMapping("user")
     @ApiOperation(value = "登录模块测试")
-    public Result login(String userid,String content,String loginType){
+    public Result login(String userid,String content,String loginType) throws UnknownHostException, MessagingException {
         LoginService loginService;
         if(LoginService.loginService.containsKey(loginType)){
             loginService=LoginService.loginService.get(loginType);
