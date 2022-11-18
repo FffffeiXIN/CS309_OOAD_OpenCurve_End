@@ -1,5 +1,6 @@
 package com.sustech.service_education.service.pay.impl;
 
+import com.alipay.api.AlipayApiException;
 import com.sustech.commonhandler.exception.DuplicateOrderException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Order;
@@ -7,6 +8,10 @@ import com.sustech.service_education.mapper.PayMapper;
 import com.sustech.service_education.service.pay.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +21,13 @@ public abstract class AbstractPaymentService implements PayService {
     @Autowired
     private PayMapper payMapper;
     @Override
-    public Result purchase(String orderId) {
-        doPurchase();
-        return null;
+    public String purchase(String orderId, HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException {
+        String res = doPurchase(orderId,request,response);
+        return res;
     }
 
     @Override
-    public Result createOrder(String courseId, int userId) {
+    public Result createOrder(String courseId, String userId) {
         String orderId = courseId + "$" + userId;
         Order order = payMapper.getOrderById(orderId);
         if(order==null){
@@ -44,5 +49,5 @@ public abstract class AbstractPaymentService implements PayService {
     }
 
     public abstract void doCreateOrder(Order order);
-    public abstract void doPurchase();
+    public abstract String doPurchase(String orderId, HttpServletRequest request, HttpServletResponse response) throws IOException, AlipayApiException;
 }

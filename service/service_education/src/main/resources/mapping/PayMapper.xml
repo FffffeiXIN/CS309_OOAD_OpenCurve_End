@@ -5,11 +5,11 @@
 <mapper namespace="com.sustech.service_education.mapper.PayMapper">
 
     <select id="getOrderById" resultType="com.sustech.service_education.entity.Order">
-        select * from order where id = #{id};
+        select * from orders where id = #{id};
     </select>
 
     <insert id="addOrder">
-        insert into order
+        insert into orders
             (id, create_time, final_update_time, course_id, user_id,pay_type,status)
         values (#{OrderId},#{createTime},#{finalUpdateTime},#{CourseId},#{userId},#{payType},#{status});
     </insert>

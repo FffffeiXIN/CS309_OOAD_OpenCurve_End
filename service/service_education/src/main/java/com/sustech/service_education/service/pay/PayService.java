@@ -1,10 +1,15 @@
 package com.sustech.service_education.service.pay;
 
+import com.alipay.api.AlipayApiException;
 import com.sustech.commonutils.Result;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public interface PayService {
 
-    Result purchase(String orderId);
+    String purchase(String orderId, HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException;
 
-    Result createOrder(String courseId, int userId);
+    Result createOrder(String courseId, String userId);
 }
