@@ -13,7 +13,7 @@ public class Order {
 
     String CourseId;
 
-    Integer userId;
+    String userId;
 
     String payType;
 
