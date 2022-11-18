@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
 
 public abstract class AbstractManagerLogin implements LoginService {
+    Random random = new Random();
     @Autowired
     SuperManagerMapper mapper;
 

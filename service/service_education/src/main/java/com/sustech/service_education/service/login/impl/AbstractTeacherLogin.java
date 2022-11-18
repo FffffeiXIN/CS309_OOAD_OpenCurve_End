@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public abstract class AbstractTeacherLogin implements LoginService {
+
+    Random random = new Random();
     @Autowired
     TeacherMapper mapper;
 
@@ -28,7 +31,7 @@ public abstract class AbstractTeacherLogin implements LoginService {
 
     private Result success(Teacher teacher){
         Map<String,Object> map=new HashMap<>();
-        map.put("user",teacher);
+        map.put("user", teacher);
         return Result.ok().code(200).message("老师登录成功").data(map);
     }
 
@@ -41,5 +44,4 @@ public abstract class AbstractTeacherLogin implements LoginService {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message(Code.LOGIN_ERROR.getMess());
         }
     }
-
 }
