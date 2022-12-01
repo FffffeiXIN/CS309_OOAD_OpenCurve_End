@@ -28,6 +28,7 @@ import javax.mail.internet.*;
 
 @Service
 public class MailRegisterService implements RegisterService {
+
     @Autowired
     StudentMapper studentMapper;
 

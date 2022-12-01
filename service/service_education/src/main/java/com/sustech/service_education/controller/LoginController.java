@@ -18,7 +18,8 @@ import java.net.UnknownHostException;
 @RequestMapping("/education/login")
 @Api(tags = {"接口测试"})
 public class LoginController {
-    @GetMapping("user")
+
+    @GetMapping("/user")
     @ApiOperation(value = "登录模块测试")
     public Result login(String userid,String content,String loginType) throws UnknownHostException, MessagingException {
         LoginService loginService;

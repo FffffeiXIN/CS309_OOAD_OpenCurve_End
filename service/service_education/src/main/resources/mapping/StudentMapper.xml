@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.sustech.service_education.mapper.StudentMapper">
     <select id="queryAllStudents" resultType="com.sustech.service_education.entity.Student">
         select * from student;
@@ -10,7 +11,6 @@
     <select id="selectStudentById" resultType="com.sustech.service_education.entity.Student">
         select * from student where id = #{id};
     </select>
-
 
     <insert id="insert">
         insert into student (id,password,status) values (#{id},#{password},'normal');
