@@ -72,7 +72,7 @@ public class AliPayServiceImpl extends AbstractPaymentService {
                     "</body>\n" +
                     "</html>";
             //输出
-//            response.getWriter().println(top + result + bottom);
+            response.getWriter().println(top + result + bottom);
             String res = top + result + bottom;
             return res;
 

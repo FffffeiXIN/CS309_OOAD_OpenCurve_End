@@ -109,7 +109,7 @@ public class MailRegisterService implements RegisterService {
 
         Transport transport = mailSession.getTransport();
 
-        String password = "lYX19970420";
+        String password = "Lyx19970420!";
         transport.connect("12012939@mail.sustech.edu.cn", password);
 
         transport.sendMessage(message, message.getAllRecipients());
