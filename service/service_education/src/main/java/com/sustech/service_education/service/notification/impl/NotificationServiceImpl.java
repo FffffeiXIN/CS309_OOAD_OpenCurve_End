@@ -2,12 +2,15 @@ package com.sustech.service_education.service.notification.impl;
 
 import com.sustech.commonhandler.exception.InsertionFailureException;
 import com.sustech.commonutils.Result;
+import com.sustech.service_education.entity.Course;
 import com.sustech.service_education.entity.Notification;
+import com.sustech.service_education.mapper.CourseMapper;
 import com.sustech.service_education.mapper.NotificationMapper;
 import com.sustech.service_education.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +19,14 @@ import java.util.Map;
 public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
-    NotificationMapper mapper;
+    NotificationMapper notificationMapper;
+
+    @Autowired
+    CourseMapper courseMapper;
 
     @Override
     public Result addNotification(String title, String course_id, String teacher_id, String modified_date, String content) {
-        int success = mapper.addNotification(title, course_id, teacher_id, modified_date, content);
+        int success = notificationMapper.addNotification(title, course_id, teacher_id, modified_date, content);
         if (success == 0) {
             throw new InsertionFailureException();
         } else {
@@ -28,23 +34,28 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
-    @Override
-    public Result getNotificationsByCourse(String course_id) {
-        List<Notification> notifications = mapper.getNotificationByCourse(course_id);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("notifications", notifications);
-
-        return Result.ok().message("获取课程通知成功").data(map);
-    }
+//    @Override
+//    public Result getNotificationsByCourse(String course_id) {
+//        List<Notification> notifications = mapper.getNotificationByCourse(course_id);
+//
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("notifications", notifications);
+//
+//        return Result.ok().message("获取课程通知成功").data(map);
+//    }
 
     @Override
     public Result getNotificationByTeacher(String teacher_id) {
-        List<Notification> notifications = mapper.getNotificationByTeacher(teacher_id);
-
         Map<String, Object> map = new HashMap<>();
-        map.put("notifications", notifications);
+        List<Notification> notification1 = notificationMapper.getNotificationByCourse("000");
+        map.put("notification of manager", notification1);
 
-        return Result.ok().message("获取教师通知成功").data(map);
+        List<Course> courses = courseMapper.getCoursesOfTeacher(teacher_id);
+        for (int i = 0; i < courses.size(); i++) {
+            String course_id = courses.get(i).getId();
+            List<Notification> notification2 = notificationMapper.getNotificationByCourse(course_id);
+            map.put(course_id, notification2);
+        }
+        return Result.ok().code(200).message("获取教师通知成功").data(map);
     }
 }

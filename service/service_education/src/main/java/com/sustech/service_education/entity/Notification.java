@@ -11,7 +11,7 @@ public class Notification {
 
     String course_id;
 
-    String teacher_id;
+    String sender_id;
 
     String modified_time;
 
