@@ -1,6 +1,5 @@
 package com.sustech.service_education.mapper;
 
-
 import com.sustech.service_education.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -4,15 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.service_education.mapper.CourseMapper">
 
+    <select id="getAllCourses" resultType="com.sustech.service_education.entity.Course">
+        select * from course;
+    </select>
+
     <select id="getCoursesOfTeacher" resultType="com.sustech.service_education.entity.Course">
-    select temp_2.id, temp_2.name, department.name as department, temp_2.credit, temp_2.course_type, temp_2.status, temp_2.fees, temp_2.info from
-(select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fees
+    select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fee
         from course
                  join (
             select course_id
             from teacher_course
             where teacher_id = #{teacher_id}) as temp_1
-                      on course.id = temp_1.course_id) as temp_2 join department on temp_2.department = department.id;
+                      on course.id = temp_1.course_id;
+    </select>
+
+    <select id="getCoursesOfStudent" resultType="com.sustech.service_education.entity.Course">
+        select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fee
+             from course
+                      join (
+                 select course_id
+                 from student_course
+                 where student_id = #{student_id}) as temp_1
+                           on course.id = temp_1.course_id;
     </select>
 
     <select id="getDepartmentIdByName" resultType="java.lang.Integer">
@@ -21,8 +34,8 @@
     </select>
 
     <insert id="addCourse">
-        insert into course (id, name, credit, department, course_type, status, fees, info)
-        values (#{course_id}, #{course_name}, #{credit}, #{department_id}, #{course_type}, #{status}, #{fees}, #{info});
+        insert into course (id, name, credit, department, course_type, status, fee, info)
+        values (#{course_id}, #{course_name}, #{credit}, #{department}, #{course_type}, #{status}, #{fee}, #{info});
     </insert>
 
     <insert id="addCourseTeacherRelation">
@@ -30,6 +43,9 @@
         values (#{teacher_id}, #{course_id});
     </insert>
 
+    <select id="getAllDepartments" resultType="java.lang.String">
+        select name from department
+    </select>
 
 
 </mapper>

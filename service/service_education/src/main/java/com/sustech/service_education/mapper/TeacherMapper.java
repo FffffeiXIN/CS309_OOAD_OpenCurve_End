@@ -10,7 +10,8 @@ public interface TeacherMapper {
 
     void insert(Teacher teacher);
 
-    List<Teacher> queryAllTeachers();
+    List<Teacher> getAllTeachers();
 
     void updateTeacher(Teacher teacher);
+
 }
