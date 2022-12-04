@@ -4,6 +4,7 @@ import com.alipay.api.AlipayApiException;
 import com.sustech.commonhandler.exception.DuplicateOrderException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Order;
+import com.sustech.service_education.mapper.CourseMapper;
 import com.sustech.service_education.mapper.PayMapper;
 import com.sustech.service_education.service.pay.PayService;
 import org.springframework.beans.factory.annotation.Autowired;

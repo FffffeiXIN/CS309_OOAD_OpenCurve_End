@@ -1,6 +1,7 @@
 package com.sustech.service_education.mapper;
 
 import com.sustech.service_education.entity.Course;
+import com.sustech.service_education.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public interface CourseMapper {
     List<String> getAllDepartments();
 
     Integer getDepartmentIdByName(String department_name);
+
+    List<Student> getStudentsByCourse(String course_id);
+
+    Course getFeeByCourse(String course_id);
 
 
 }

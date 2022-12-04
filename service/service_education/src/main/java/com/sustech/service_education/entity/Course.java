@@ -19,5 +19,5 @@ public class Course {
 
     String status;
 
-    Float fee;
+    Double fee;
 }
