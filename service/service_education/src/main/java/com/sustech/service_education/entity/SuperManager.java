@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class SuperManager {
-    Integer id = null;
+    String id = null;
     String name = null;
     String passwd = null;
-    Integer failTime = 0;
+    String department;
 }
 

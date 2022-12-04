@@ -23,6 +23,11 @@ public class NotificationController {
         return notificationService.getNotificationByTeacher(teacher_id);
     }
 
+    @GetMapping("/getNotificationByManager")
+    public Result getNotificationByManager(String manager_id){
+        return notificationService.getNotificationByManager(manager_id);
+    }
+
     @PostMapping("/addNotification")
     public Result addNotification(String title, String course_id, String teacher_id, String modified_date, String content){
         return notificationService.addNotification(title, course_id, teacher_id, modified_date, content);
