@@ -46,6 +46,16 @@
     <select id="getAllDepartments" resultType="java.lang.String">
         select name from department
     </select>
+    <select id="getStudentsByCourse" resultType="com.sustech.service_education.entity.Student">
+        select * from student_course
+                 join student on id = student_id
+                 where course_id = #{course_id};
+    </select>
+    <select id="getFeeByCourse" resultType="com.sustech.service_education.entity.Course">
+        select * from course where id = #{course_id};
+    </select>
+
+
 
 
 </mapper>
