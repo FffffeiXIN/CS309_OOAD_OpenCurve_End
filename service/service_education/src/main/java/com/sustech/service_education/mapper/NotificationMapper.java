@@ -11,5 +11,6 @@ public interface NotificationMapper {
 
     List<Notification> getNotificationByCourse(String course_id);
 
+
 //    List<Notification> getNotificationByTeacher(String teacher_id);
 }

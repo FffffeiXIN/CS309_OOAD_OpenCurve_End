@@ -8,4 +8,5 @@ public interface NotificationService {
 //    Result getNotificationsByCourse(String course_id);
 
     Result getNotificationByTeacher(String teacher_id);
+    Result getNotificationByManager(String manager_id);
 }

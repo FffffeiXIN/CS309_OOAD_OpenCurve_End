@@ -4,8 +4,12 @@ import com.sustech.commonhandler.exception.InsertionFailureException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Course;
 import com.sustech.service_education.entity.Notification;
+import com.sustech.service_education.entity.SuperManager;
+import com.sustech.service_education.entity.Teacher;
 import com.sustech.service_education.mapper.CourseMapper;
 import com.sustech.service_education.mapper.NotificationMapper;
+import com.sustech.service_education.mapper.SuperManagerMapper;
+import com.sustech.service_education.mapper.TeacherMapper;
 import com.sustech.service_education.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +27,10 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
     CourseMapper courseMapper;
+    @Autowired
+    TeacherMapper teacherMapper;
+    @Autowired
+    SuperManagerMapper superManagerMapper;
 
     @Override
     public Result addNotification(String title, String course_id, String teacher_id, String modified_date, String content) {
@@ -47,7 +55,9 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public Result getNotificationByTeacher(String teacher_id) {
         Map<String, Object> map = new HashMap<>();
-        List<Notification> notification1 = notificationMapper.getNotificationByCourse("000");
+        Teacher teacher = teacherMapper.selectTeacherByEmail(teacher_id);
+        String str = teacher.getDepartment()+"000";
+        List<Notification> notification1 = notificationMapper.getNotificationByCourse(str);
         map.put("notification of manager", notification1);
 
         List<Course> courses = courseMapper.getCoursesOfTeacher(teacher_id);
@@ -57,5 +67,15 @@ public class NotificationServiceImpl implements NotificationService {
             map.put(course_id, notification2);
         }
         return Result.ok().code(200).message("获取教师通知成功").data(map);
+    }
+
+    @Override
+    public Result getNotificationByManager(String manager_id) {
+        Map<String, Object> map = new HashMap<>();
+        SuperManager manager = superManagerMapper.selectManagerById(manager_id);
+        String str = manager.getDepartment() + "000";
+        List<Notification> notification1 = notificationMapper.getNotificationByCourse(str);
+        map.put("notification of manager", notification1);
+        return Result.ok().code(200).message("获取管理员通知成功").data(map);
     }
 }

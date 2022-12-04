@@ -36,12 +36,12 @@ public abstract class AbstractManagerLogin implements LoginService {
     }
 
     private Result fail(SuperManager manager){
-        if(manager.getFailTime()>5) {
-            manager.setFailTime(0);
-            return Result.error().code(Code.MULTIPLE_LOGIN_ATTEMPT.getCode()).message(Code.MULTIPLE_LOGIN_ATTEMPT.getMess());
-        }
-        else {
+//        if(manager.getFailTime()>5) {
+//            manager.setFailTime(0);
+//            return Result.error().code(Code.MULTIPLE_LOGIN_ATTEMPT.getCode()).message(Code.MULTIPLE_LOGIN_ATTEMPT.getMess());
+//        }
+//        else {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message(Code.LOGIN_ERROR.getMess());
-        }
+//        }
     }
 }
