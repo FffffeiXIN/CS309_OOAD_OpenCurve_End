@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface NotificationMapper {
-    int addNotification(String title, String course_id, String teacher_id, String modified_date, String content);
+    int addNotification(String title, String course_id, String sender_id, String modified_date, String content);
 
     List<Notification> getNotificationByCourse(String course_id);
 
-    List<Notification> getNotificationByTeacher(String teacher_id);
+//    List<Notification> getNotificationByTeacher(String teacher_id);
 }

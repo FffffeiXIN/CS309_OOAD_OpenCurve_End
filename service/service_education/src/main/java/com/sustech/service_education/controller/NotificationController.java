@@ -13,10 +13,10 @@ public class NotificationController {
     @Autowired
     NotificationService notificationService;
 
-    @GetMapping("/getNotificationByCourse")
-    public Result getNotificationByCourse(String course_id){
-        return notificationService.getNotificationsByCourse(course_id);
-    }
+//    @GetMapping("/getNotificationByCourse")
+//    public Result getNotificationByCourse(String course_id){
+//        return notificationService.getNotificationsByCourse(course_id);
+//    }
 
     @GetMapping("/getNotificationByTeacher")
     public Result getNotificationByTeacher(String teacher_id){
