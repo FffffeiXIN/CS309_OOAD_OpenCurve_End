@@ -1,7 +1,6 @@
 package com.sustech.service_education.service.course.impl;
 
 import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
-import com.sustech.commonhandler.exception.SourceNotFoundException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Course;
 import com.sustech.service_education.mapper.CourseMapper;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CourseServiceImp implements CourseService {
+public class CourseServiceImpl implements CourseService {
 
     @Autowired
     CourseMapper mapper;
