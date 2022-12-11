@@ -12,7 +12,7 @@ public class Student{
     String department;
     String grade;
     String status;
-    boolean isLock;
+    boolean locked;
     Integer failTime =0;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
