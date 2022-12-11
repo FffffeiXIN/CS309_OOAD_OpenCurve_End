@@ -1,5 +1,6 @@
 package com.sustech.service_banner.mapper;
 
+import com.sustech.commonutils.Result;
 import com.sustech.service_banner.entity.Banner;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -8,5 +9,5 @@ public interface BannerMapper {
 
     int insertBanner(Banner banner);
 
-    void deleteBanner(String url);
+    int deleteBanner(String url);
 }

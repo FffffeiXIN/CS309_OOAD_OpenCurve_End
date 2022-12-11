@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sustech.service_education.mapper.CourseMapper">
+
+    <select id="getAllCourses" resultType="com.sustech.service_education.entity.Course">
+        select * from course;
+    </select>
+
+    <select id="getCoursesOfTeacher" resultType="com.sustech.service_education.entity.Course">
+    select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fee
+        from course
+                 join (
+            select course_id
+            from teacher_course
+            where teacher_id = #{teacher_id}) as temp_1
+                      on course.id = temp_1.course_id;
+    </select>
+
+    <select id="getCoursesOfStudent" resultType="com.sustech.service_education.entity.Course">
+        select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fee
+             from course
+                      join (
+                 select course_id
+                 from student_course
+                 where student_id = #{student_id}) as temp_1
+                           on course.id = temp_1.course_id;
+    </select>
+
+    <select id="getDepartmentIdByName" resultType="java.lang.Integer">
+        select id
+        from department where name = #{department_name};
+    </select>
+
+    <insert id="addCourse">
+        insert into course (id, name, credit, department, course_type, status, fee, info)
+        values (#{course_id}, #{course_name}, #{credit}, #{department}, #{course_type}, #{status}, #{fee}, #{info});
+    </insert>
+
+    <insert id="addCourseTeacherRelation">
+        insert into teacher_course (teacher_id, course_id)
+        values (#{teacher_id}, #{course_id});
+    </insert>
+
+    <select id="getAllDepartments" resultType="java.lang.String">
+        select name from department
+    </select>
+    <select id="getStudentsByCourse" resultType="com.sustech.service_education.entity.Student">
+        select * from student_course
+                 join student on id = student_id
+                 where course_id = #{course_id};
+    </select>
+    <select id="getFeeByCourse" resultType="com.sustech.service_education.entity.Course">
+        select * from course where id = #{course_id};
+    </select>
+
+
+
+
+</mapper>

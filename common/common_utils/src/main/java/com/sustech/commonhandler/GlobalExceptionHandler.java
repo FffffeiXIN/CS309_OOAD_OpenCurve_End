@@ -19,9 +19,9 @@ public class GlobalExceptionHandler {
         return Result.error().code(Code.DUMPLICATE_REGISTERY.getCode()).message(Code.DUMPLICATE_REGISTERY.getMess());
     }
 
-    @ExceptionHandler(InsertionFailureException.class)
-    public Result InsertionFailureError(){
-        return Result.error().code(Code.INSERTION_FAILURE.getCode()).message(Code.INSERTION_FAILURE.getMess());
+    @ExceptionHandler(DatabaseOperationFailureException.class)
+    public Result DatabaseOperationFailureError(){
+        return Result.error().code(Code.DATABASE_OPERATION_FAILURE.getCode()).message(Code.DATABASE_OPERATION_FAILURE.getMess());
     }
 
     @ExceptionHandler(ServiceNotFoundException.class)

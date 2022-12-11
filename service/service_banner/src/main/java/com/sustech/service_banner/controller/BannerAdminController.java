@@ -4,12 +4,10 @@ import com.sustech.service_banner.entity.Banner;
 import com.sustech.service_banner.entity.Page;
 import com.sustech.service_banner.service.BannerService;
 import com.sustech.commonutils.Result;
+import com.sustech.service_banner.service.impl.BannerAdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,13 +35,14 @@ public class BannerAdminController {
         return service.deleteBanner(url);
     }
 
-    @GetMapping("addBanner")
+    @PostMapping("addBanner")
     public Result addBanner(String url,String group,String path){
+        System.out.print("3");
         Banner banner=new Banner();
         banner.setUrl(url);
         banner.setGroup(group);
         banner.setPath(path);
-        return service.addBanner(banner);
+        return service.insertBanner(banner);
     }
 
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sustech.service_education.mapper.NotificationMapper">
+
+    <insert id="addNotification" >
+        insert into notification (title,course_id,sender_id,modified_time,content)
+        values (#{title},#{course_id},#{sender_id},#{modified_date},#{content});
+    </insert>
+
+    <select id="getNotificationByCourse" resultType="com.sustech.service_education.entity.Notification">
+        select * from notification where course_id = #{course_id};
+    </select>
+
+<!--    <select id="getNotificationByTeacher" resultType="com.sustech.service_education.entity.Notification">-->
+<!--        select * from notification where course_id = #{course_id};-->
+<!--    </select>-->
+
+</mapper>

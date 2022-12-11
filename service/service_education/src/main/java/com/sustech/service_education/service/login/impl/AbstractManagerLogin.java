@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
 
 public abstract class AbstractManagerLogin implements LoginService {
+    Random random = new Random();
     @Autowired
     SuperManagerMapper mapper;
 
@@ -33,12 +36,12 @@ public abstract class AbstractManagerLogin implements LoginService {
     }
 
     private Result fail(SuperManager manager){
-        if(manager.getFailTime()>5) {
-            manager.setFailTime(0);
-            return Result.error().code(Code.MULTIPLE_LOGIN_ATTEMPT.getCode()).message(Code.MULTIPLE_LOGIN_ATTEMPT.getMess());
-        }
-        else {
+//        if(manager.getFailTime()>5) {
+//            manager.setFailTime(0);
+//            return Result.error().code(Code.MULTIPLE_LOGIN_ATTEMPT.getCode()).message(Code.MULTIPLE_LOGIN_ATTEMPT.getMess());
+//        }
+//        else {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message(Code.LOGIN_ERROR.getMess());
-        }
+//        }
     }
 }

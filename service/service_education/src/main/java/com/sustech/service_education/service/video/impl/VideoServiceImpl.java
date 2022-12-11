@@ -1,6 +1,6 @@
 package com.sustech.service_education.service.video.impl;
 
-import com.sustech.commonhandler.exception.InsertionFailureException;
+import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
 import com.sustech.commonhandler.exception.SourceNotFoundException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Video;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -34,7 +33,7 @@ public class VideoServiceImpl implements VideoService {
     public Result storeVideo(String course_id, Integer session, String url, String title, String description) {
         int success = mapper.insertVideo(course_id, session, url, title, description);
         if(success == 0) {
-            throw new InsertionFailureException();
+            throw new DatabaseOperationFailureException();
         } else {
             return Result.ok().message("视频元数据存储成功").code(200);
         }
