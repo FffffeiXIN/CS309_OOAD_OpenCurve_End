@@ -27,7 +27,7 @@ public abstract class AbstractStudentLogin implements LoginService {
         if (student == null){
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此用户不存在");
         }
-        if (!student.getStatus().equals("normal")){
+        if (student.isLocked()){
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此账号被冻结");
         }
 
