@@ -5,11 +5,11 @@
 <mapper namespace="com.sustech.service_banner.mapper.BannerMapper">
 
     <insert id="insertBanner">
-        insert into banner (url, group, path) values (#{url}, #{group}, #{path})
+        insert into banner (url, "group", path) values (#{url}, #{group}, #{path});
     </insert>
 
     <delete id="deleteBanner">
-        delete from banner where url = #{url}
+        delete from banner where url = #{url};
     </delete>
 
 </mapper>

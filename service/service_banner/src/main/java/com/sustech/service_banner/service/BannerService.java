@@ -10,6 +10,6 @@ public interface BannerService {
 
     Result deleteBanner(String url);
 
-    Result addBanner(Banner banner);
+    Result insertBanner(Banner banner);
 
 }

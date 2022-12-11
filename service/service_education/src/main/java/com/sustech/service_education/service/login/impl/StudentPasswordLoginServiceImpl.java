@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 public class StudentPasswordLoginServiceImpl extends AbstractStudentLogin {
     @Override
     Result doLogin(Student student, String content) {
-        if(student.comparePassword(content)) return Result.ok().code(200).message("学生登录成功");
+        if(student.comparePassword(content)){
+            return Result.ok().code(200).message("学生登录成功");
+        }
         else return Result.error().code(Code.LOGIN_ERROR.getCode()).message("密码错误");
     }
 }

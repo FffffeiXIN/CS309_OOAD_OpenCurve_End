@@ -8,7 +8,7 @@
 <!--        <result column="" property=""/>-->
 <!--    </resultMap>-->
 
-    <select id="queryAllTeachers" resultType="com.sustech.service_education.entity.Teacher">
+    <select id="getAllTeachers" resultType="com.sustech.service_education.entity.Teacher">
         select * from teacher
     </select>
 
