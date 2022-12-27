@@ -32,4 +32,23 @@ public class VideoController {
     public Result getSessionInfo(String course_id, Integer session) {
         return videoService.getSessionInfo(course_id, session);
     }
+    @PostMapping("/setVideoScore")
+    public Result setVideoScore(String course_id, Integer session, float score) {
+        return videoService.setVideoScore(course_id, session, score);
+    }
+
+    @GetMapping("/getScore")
+    public Result getScore(String course_id, Integer session, String user) {
+        return videoService.getScore(course_id, session, user);
+    }
+
+    @PostMapping("/updateVideoScore")
+    public Result updateVideoScore(String course_id, Integer session, float score, String user) {
+        return videoService.updateVideoScore(course_id, session, score, user);
+    }
+
+    @PostMapping("/updateTestScore")
+    public Result updateTestScore(String course_id, Integer session, float score, String user) {
+        return videoService.updateTestScore(course_id, session, score, user);
+    }
 }
