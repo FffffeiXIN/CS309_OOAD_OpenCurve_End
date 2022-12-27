@@ -12,4 +12,7 @@ public class Teacher{
     String password;
     String status;
     Integer failTime =0;
+    public boolean comparePassword(String password) {
+        return password.equals(this.password);
+    }
 }

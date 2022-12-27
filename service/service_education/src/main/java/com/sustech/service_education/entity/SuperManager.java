@@ -7,7 +7,10 @@ import lombok.Data;
 public class SuperManager {
     String id = null;
     String name = null;
-    String passwd = null;
+    String password = null;
     String department;
+    public boolean comparePassword(String password) {
+        return password.equals(this.password);
+    }
 }
 
