@@ -73,13 +73,13 @@ public class VideoServiceImpl implements VideoService {
         Map<String, Object> map = new HashMap<>();
         if (mapper.getVideoScore(id, user) == null){
             mapper.insertStuSessScore(id,user);
-            map.put("Video Score", mapper.getVideoScore(id, user));
-            map.put("Test Score", mapper.getTestScore(id, user));
+            map.put("video_score", mapper.getVideoScore(id, user));
+            map.put("text_score", mapper.getTestScore(id, user));
             return Result.ok().code(200).message("学生成绩初始化成功").data(map);
         }
         else {
-            map.put("Video Score", mapper.getVideoScore(id, user));
-            map.put("Test Score", mapper.getTestScore(id, user));
+            map.put("video_score", mapper.getVideoScore(id, user));
+            map.put("text_score", mapper.getTestScore(id, user));
             return Result.ok().code(200).message("获取成绩成功").data(map);
         }
     }
