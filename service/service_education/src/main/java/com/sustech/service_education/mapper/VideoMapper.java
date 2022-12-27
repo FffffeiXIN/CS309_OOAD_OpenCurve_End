@@ -11,4 +11,9 @@ public interface VideoMapper {
     int insertVideo(String course_id, Integer session, String url, String title, String description);
     Integer getSessionsCount(String course_id);
     Video getSessionInfo(String course_id, Integer session);
+    void setVideoScore(String course_id, Integer session, float score);
+    Float getVideoScore(Integer id, String user);
+    Float getTestScore(Integer id, String user);
+    void updateVideoScore(Integer sess_id, String user, float score);
+    void updateTestScore(Integer sess_id, String user, float score);
 }

@@ -20,4 +20,24 @@
         select * from video where course_id = #{course_id} and session = #{session};
     </select>
 
+    <update id="setVideoScore">
+        update video set score = #{score} where course_id =  #{course_id} and session = #{session};
+    </update>
+
+    <select id="getVideoScore" resultType="java.lang.Float">
+        select video_score from stu_session_score where sess_id = #{id} and stu_id = #{user};
+    </select>
+
+    <select id="getTestScore" resultType="java.lang.Float">
+        select text_score from stu_session_score where sess_id = #{id} and stu_id = #{user};
+    </select>
+
+    <update id="updateVideoScore">
+        update stu_session_score set video_score = #{score} where stu_id = #{user} and sess_id = #{sess_id};
+    </update>
+
+    <update id="updateTestScore">
+        update stu_session_score set text_score = #{score} where stu_id = #{user} and sess_id = #{sess_id};
+    </update>
+
 </mapper>

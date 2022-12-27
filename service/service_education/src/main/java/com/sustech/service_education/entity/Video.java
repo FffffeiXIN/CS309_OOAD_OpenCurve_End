@@ -5,10 +5,11 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Video {
-
+    Integer id;
     String course_id;
     Integer session;
     String title;
     String url;
     String description;
+    float score;
 }
