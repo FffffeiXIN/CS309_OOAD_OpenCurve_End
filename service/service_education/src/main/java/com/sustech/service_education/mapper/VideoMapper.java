@@ -2,8 +2,10 @@ package com.sustech.service_education.mapper;
 
 import java.util.List;
 
+import com.sustech.service_education.entity.Score;
 import com.sustech.service_education.entity.Video;
 import org.apache.ibatis.annotations.Mapper;
+import org.yaml.snakeyaml.emitter.ScalarAnalysis;
 
 @Mapper
 public interface VideoMapper {
@@ -16,4 +18,6 @@ public interface VideoMapper {
     Float getTestScore(Integer id, String user);
     void updateVideoScore(Integer sess_id, String user, float score);
     void updateTestScore(Integer sess_id, String user, float score);
+    void insertStuSessScore(Integer sess_id, String user);
+    List<Score> getScoresBySession(Integer sess_id);
 }
