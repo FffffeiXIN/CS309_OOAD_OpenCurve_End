@@ -11,4 +11,5 @@ public interface VideoService {
     Result getScore(String course_id, Integer session, String user);
     Result updateVideoScore(String course_id, Integer session, float score, String user);
     Result updateTestScore(String course_id, Integer session, float score, String user);
+    Result getAllScore(String course_id, Integer session);
 }

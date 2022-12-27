@@ -5,39 +5,72 @@
 <mapper namespace="com.sustech.service_education.mapper.VideoMapper">
 
     <select id="getURLByKey" resultType="java.lang.String">
-        select url from video where course_id = #{course_id} and session = #{session};
+        select url
+        from video
+        where course_id = #{course_id}
+          and session = #{session};
     </select>
-    
+
     <insert id="insertVideo">
-        insert into video (course_id, session, url, title, description) values (#{course_id}, #{session}, #{url}, #{title}, #{description});
+        insert into video (course_id, session, url, title, description)
+        values (#{course_id}, #{session}, #{url}, #{title}, #{description});
     </insert>
 
     <select id="getSessionsCount" resultType="java.lang.Integer">
-        select count(*) as cnt from video where course_id = #{course_id};
+        select count(*) as cnt
+        from video
+        where course_id = #{course_id};
     </select>
 
     <select id="getSessionInfo" resultType="com.sustech.service_education.entity.Video">
-        select * from video where course_id = #{course_id} and session = #{session};
+        select *
+        from video
+        where course_id = #{course_id}
+          and session = #{session};
     </select>
 
     <update id="setVideoScore">
-        update video set score = #{score} where course_id =  #{course_id} and session = #{session};
+        update video
+        set score = #{score}
+        where course_id = #{course_id}
+          and session = #{session};
     </update>
 
     <select id="getVideoScore" resultType="java.lang.Float">
-        select video_score from stu_session_score where sess_id = #{id} and stu_id = #{user};
+        select video_score
+        from stu_session_score
+        where sess_id = #{id}
+          and stu_id = #{user};
     </select>
 
     <select id="getTestScore" resultType="java.lang.Float">
-        select text_score from stu_session_score where sess_id = #{id} and stu_id = #{user};
+        select text_score
+        from stu_session_score
+        where sess_id = #{id}
+          and stu_id = #{user};
     </select>
 
     <update id="updateVideoScore">
-        update stu_session_score set video_score = #{score} where stu_id = #{user} and sess_id = #{sess_id};
+        update stu_session_score
+        set video_score = #{score}
+        where stu_id = #{user}
+          and sess_id = #{sess_id};
     </update>
 
     <update id="updateTestScore">
-        update stu_session_score set text_score = #{score} where stu_id = #{user} and sess_id = #{sess_id};
+        update stu_session_score
+        set text_score = #{score}
+        where stu_id = #{user}
+          and sess_id = #{sess_id};
     </update>
+
+    <insert id="insertStuSessScore">
+        insert into stu_session_score (stu_id, sess_id, video_score, text_score)
+        values (#{user}, #{sess_id}, 0, 0);
+    </insert>
+
+    <select id="getScoresBySession" resultType="com.sustech.service_education.entity.Score">
+        select * from stu_session_score where sess_id = #{sess_id};
+    </select>
 
 </mapper>

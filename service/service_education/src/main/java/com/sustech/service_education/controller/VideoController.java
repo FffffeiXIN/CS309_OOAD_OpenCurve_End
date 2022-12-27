@@ -51,4 +51,10 @@ public class VideoController {
     public Result updateTestScore(String course_id, Integer session, float score, String user) {
         return videoService.updateTestScore(course_id, session, score, user);
     }
+
+    @GetMapping("/getAllScore")
+    public Result getAllScore(String course_id, Integer session) {
+        return videoService.getAllScore(course_id, session);
+    }
+
 }
