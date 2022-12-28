@@ -19,8 +19,8 @@ public class VideoController {
     }
 
     @PostMapping("/uploadVideoMeta")
-    public Result uploadVideoMeta(String course_id, Integer session, String url, String title, String description) {
-        return videoService.storeVideo(course_id, session, url, title, description);
+    public Result uploadVideoMeta(String course_id, Integer session, String url, String title, String description, float score) {
+        return videoService.storeVideo(course_id, session, url, title, description, score);
     }
 
     @GetMapping("/getSessionsCount")
