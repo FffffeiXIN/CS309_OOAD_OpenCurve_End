@@ -5,20 +5,47 @@
 <mapper namespace="com.sustech.service_education.mapper.AssignmentMapper">
 
     <insert id="addAssignment">
-        insert into assignment_list (title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements, attachment)
-         values (#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements},#{attachment})
+        insert into assignment_list (title, course_id, teacher_id, due_date, resubmission_allowed,
+                                     accept_resubmission_until, requirements, attachment)
+        values (#{title}, #{course_id}, #{teacher_id}, #{due_date}, #{resubmission_allowed},
+                #{accept_resubmission_until}, #{requirements}, #{attachment})
     </insert>
 
     <insert id="addStudentSubmission">
-        insert into student_assignment values (#{assignment_id},#{student_id},#{content_url},#{text})
+        insert into student_assignment
+        values (#{assignment_id}, #{student_id}, #{content_url}, #{text})
     </insert>
 
     <select id="selectSubmissionById" resultType="com.sustech.service_education.entity.Submission">
-        select * from student_assignment where assignment_id = #{assignment_id} and student_id = #{student_id}
+        select *
+        from student_assignment
+        where assignment_id = #{assignment_id}
+          and student_id = #{student_id}
     </select>
 
     <update id="updateStudentSubmission">
-        update student_assignment set content_url = #{content_url}, text = #{text} where assignment_id = #{assignment_id} } and student_id = #{student_id}
+        update student_assignment
+        set content_url = #{content_url},
+            text        = #{text}
+        where assignment_id = #{assignment_id} } and student_id = #{student_id}
     </update>
 
+    <select id="selectSubmissionByAssId" resultType="com.sustech.service_education.entity.Submission">
+        select *
+        from student_assignment
+        where assignment_id = #{assignment_id};
+    </select>
+
+    <update id="updateAssignment">
+        update assignment_list
+        set title=#{title},
+            course_id=#{course_id},
+            teacher_id=#{teacher_id},
+            due_date=#{due_date},
+            resubmission_allowed=#{resubmission_allowed},
+            accept_resubmission_until=#{accept_resubmission_until},
+            requirements=#{requirements},
+            attachment=#{attachment}
+        where id = #{assignment_id};
+    </update>
 </mapper>
