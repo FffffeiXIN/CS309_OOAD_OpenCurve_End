@@ -16,8 +16,8 @@ public class AssignmentService {
     @Autowired
     AssignmentMapper assignmentMapper;
 
-    public Result addAssignment(int id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
-        assignmentMapper.addAssignment(id, title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements,attachment);
+    public Result addAssignment(String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
+        assignmentMapper.addAssignment(title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements,attachment);
         return Result.ok().code(200);
     }
 

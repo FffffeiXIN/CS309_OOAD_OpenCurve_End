@@ -5,7 +5,8 @@
 <mapper namespace="com.sustech.service_education.mapper.AssignmentMapper">
 
     <insert id="addAssignment">
-        insert into assignment_list values (#{id},#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements},#{attachment})
+        insert into assignment_list (title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements, attachment)
+         values (#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements},#{attachment})
     </insert>
 
     <insert id="addStudentSubmission">

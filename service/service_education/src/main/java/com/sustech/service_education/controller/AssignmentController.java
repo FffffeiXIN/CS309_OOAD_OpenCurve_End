@@ -5,15 +5,13 @@ import com.sustech.service_education.service.assignment.AssignmentService;
 import com.sustech.service_education.service.course.CourseService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("assignment")
+@CrossOrigin
+@RequestMapping("/education/assignment")
 @Api(tags = "接口测试")
 public class AssignmentController {
     @Autowired
@@ -22,8 +20,8 @@ public class AssignmentController {
     CourseService courseService;
 
     @PostMapping("/release")
-    public Result addAssignment(int assignment_id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
-        return service.addAssignment(assignment_id, title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements,attachment);
+    public Result addAssignment(String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
+        return service.addAssignment(title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements,attachment);
     }
 
     @GetMapping("/getStudentAssignments")
@@ -61,5 +59,13 @@ public class AssignmentController {
         return service.updateScore(assignment_id,student_id,score);
     }
 
+    @GetMapping("/getAssignmentById")
+    public Result getAssignmentById(int assignment_id) {
+        return null;
+    }
 
+    @PostMapping("/updateAssignment")
+    public Result updateAssignment(int assignment_id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
+        return null;
+    }
 }
