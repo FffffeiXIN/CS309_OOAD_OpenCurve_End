@@ -22,5 +22,6 @@ public interface VideoMapper {
     void insertStuSessScore(Integer sess_id, String user);
     List<Score> getScoresBySession(Integer sess_id);
     void insertTest(Integer session_id, String questionType, String title, String choices, String correct_answer);
+    void updateTest(Integer id, String questionType, String title, String choices, String correct_answer);
     List<Test> getAllTestBySession(Integer sess_id);
 }

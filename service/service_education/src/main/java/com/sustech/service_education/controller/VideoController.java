@@ -57,9 +57,13 @@ public class VideoController {
         return videoService.getAllScore(course_id, session);
     }
 
-    @PostMapping("/postText")
+    @PostMapping("/postTest")
     public Result postText(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
         return videoService.postText(course_id, session, questionType, title, choices, correct_answer);
+    }
+    @PostMapping("/updateTest")
+    public Result updateText(Integer id, String questionType, String title, String choices, String correct_answer) {
+        return videoService.updateText(id, questionType, title, choices, correct_answer);
     }
 
     @GetMapping("/getAllTestByCourseAndSession")
