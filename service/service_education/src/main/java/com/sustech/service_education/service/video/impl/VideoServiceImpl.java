@@ -127,6 +127,12 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
+    public Result updateTest(Integer id, String questionType, String title, String choices, String correct_answer) {
+        mapper.updateTest(id,questionType,title,choices,correct_answer);
+        return Result.ok().code(200).message("题目修改成功");
+    }
+
+    @Override
     public Result getAllTestByCourseAndSession(String course_id, Integer session) {
         Video video = mapper.getSessionInfo(course_id, session);
         Map<String,Object> map = new HashMap<>();
