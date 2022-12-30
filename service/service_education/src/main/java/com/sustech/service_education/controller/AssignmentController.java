@@ -26,9 +26,6 @@ public class AssignmentController {
 
     @GetMapping("/getStudentAssignments")
     public Result getStudentAssignment(String student_id) {
-        // first get the courses of student
-        // add the courses to the return result
-        // then get the assignment and add assignments to the return result
         Result result = courseService.getCoursesOfStudent(student_id);
         result.getData().put("assignments",service.getStudentAssignment(student_id));
         return result;
@@ -36,9 +33,6 @@ public class AssignmentController {
 
     @GetMapping("/getTeacherAssignments")
     public Result getTeacherAssignment(String teacher_id) {
-        // first get the courses of teacher
-        // add the courses to the return result
-        // then get the assignment and add assignments to the return result
         Result result = courseService.getCoursesOfTeacher(teacher_id);
         result.getData().put("assignments",service.getTeacherAssignment(teacher_id));
         return result;
@@ -49,7 +43,7 @@ public class AssignmentController {
         return service.submitAssignment(assignment_id, student_id, text, content_url);
     }
 
-    @GetMapping("/getSubmission")
+    @GetMapping("/getSubmissionOfStudent")
     public Result getSubmissionByStudent(int assignment_id, String student_id) {
         return service.getSubmission(assignment_id, student_id);
     }
@@ -61,11 +55,15 @@ public class AssignmentController {
 
     @GetMapping("/getAssignmentById")
     public Result getAssignmentById(int assignment_id) {
+        // get the assignment and its submissions
+        // return assignment & submissions
         return null;
     }
 
     @PostMapping("/updateAssignment")
     public Result updateAssignment(int assignment_id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
+        // update by assignment_id
         return null;
     }
+
 }
