@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sustech.service_education.mapper.AssignmentMapper">
+
+    <insert id="addAssignment">
+        insert into assignment_list values (#{id},#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements})
+    </insert>
+
+    <insert id="addStudentSubmission">
+        insert into student_assignment values (#{assignment_id},#{student_id},#{content_url},#{text})
+    </insert>
+
+    <select id="selectSubmissionById" resultType="java.util.HashMap">
+        select * from student_assignment where assignment_id = #{assignment_id} and student_id = #{student_id}
+    </select>
+
+    <update id="updateStudentSubmission">
+        update student_assignment set content_url = #{content_url}, text = #{text} where assignment_id = #{assignment_id} } and student_id = #{student_id}
+    </update>
+
+</mapper>

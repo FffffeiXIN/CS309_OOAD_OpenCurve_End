@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.16.4.246:8848
   application:
     name: education
   profiles:

@@ -52,30 +52,32 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
-//    @Override
-//    public Result getNotificationsByCourse(String course_id) {
-//        List<Notification> notifications = mapper.getNotificationByCourse(course_id);
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("notifications", notifications);
-//
-//        return Result.ok().message("获取课程通知成功").data(map);
-//    }
+    @Override
+    public Result getNotificationsByCourse(String course_id) {
+        List<Notification> notifications = notificationMapper.getNotificationByCourse(course_id);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("notifications", notifications);
+
+        return Result.ok().message("获取课程通知成功").data(map);
+    }
 
     @Override
     public Result getNotificationByTeacher(String teacher_id) {
         Map<String, Object> map = new HashMap<>();
         Teacher teacher = teacherMapper.selectTeacherByEmail(teacher_id);
         String str = teacher.getDepartment() + "000";
-        List<Notification> notification1 = notificationMapper.getNotificationByCourse(str);
-        map.put("notification of manager", notification1);
+        List<Notification> notifications = new ArrayList<>(notificationMapper.getNotificationByCourse(str));
 
         List<Course> courses = courseMapper.getCoursesOfTeacher(teacher_id);
         for (Course cours : courses) {
             String course_id = cours.getId();
-            List<Notification> notification2 = notificationMapper.getNotificationByCourse(course_id);
-            map.put(course_id, notification2);
+            notifications.addAll(notificationMapper.getNotificationByCourse(course_id));
         }
+
+        map.put("teacherDepartment", teacher.getDepartment());
+        map.put("courses", courses);
+        map.put("notifications", notifications);
         return Result.ok().code(200).message("教师获取通知成功").data(map);
     }
 
@@ -84,8 +86,8 @@ public class NotificationServiceImpl implements NotificationService {
         Map<String, Object> map = new HashMap<>();
         SuperManager manager = superManagerMapper.selectManagerById(manager_id);
         String str = manager.getDepartment() + "000";
-        List<Notification> notification1 = notificationMapper.getNotificationByCourse(str);
-        map.put("notification of manager", notification1);
+        List<Notification> notification = notificationMapper.getNotificationByCourse(str);
+        map.put("notifications", notification);
         return Result.ok().code(200).message("管理员获取通知成功").data(map);
     }
 
@@ -94,15 +96,17 @@ public class NotificationServiceImpl implements NotificationService {
         Map<String, Object> map = new HashMap<>();
         Student student = studentMapper.selectStudentById(student_id);
         String str = student.getDepartment() + "000";
-        List<Notification> notification1 = notificationMapper.getNotificationByCourse(str);
-        map.put("notification of manager", notification1);
+        List<Notification> notifications = new ArrayList<>(notificationMapper.getNotificationByCourse(str));
 
         List<Course> courses = courseMapper.getCoursesOfStudent(student_id);
         for (Course cours : courses) {
             String course_id = cours.getId();
-            List<Notification> notification2 = notificationMapper.getNotificationByCourse(course_id);
-            map.put(course_id, notification2);
+            notifications.addAll(notificationMapper.getNotificationByCourse(course_id));
         }
+
+        map.put("studentDepartment", student.getDepartment());
+        map.put("courses", courses);
+        map.put("notifications", notifications);
         return Result.ok().code(200).message("学生获取通知成功").data(map);
     }
 

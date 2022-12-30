@@ -11,7 +11,7 @@ import org.yaml.snakeyaml.emitter.ScalarAnalysis;
 @Mapper
 public interface VideoMapper {
     String getURLByKey(String course_id, Integer session);
-    int insertVideo(String course_id, Integer session, String url, String title, String description);
+    int insertVideo(String course_id, Integer session, String url, String title, String description, float score);
     Integer getSessionsCount(String course_id);
     Video getSessionInfo(String course_id, Integer session);
     void setVideoScore(String course_id, Integer session, float score);

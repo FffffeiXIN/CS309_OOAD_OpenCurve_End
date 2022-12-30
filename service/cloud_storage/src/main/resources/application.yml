@@ -2,8 +2,12 @@ server:
   port: 8081
 
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.16.4.246:8848
   application:
-    name: cloud_storage
+    name: CloudStorage
   profiles:
     active: dev
   mvc:
