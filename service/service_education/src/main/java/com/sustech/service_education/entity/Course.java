@@ -20,4 +20,6 @@ public class Course {
     String status;
 
     Double fee;
+
+    String others;
 }

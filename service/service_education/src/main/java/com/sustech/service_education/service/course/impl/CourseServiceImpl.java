@@ -65,4 +65,24 @@ public class CourseServiceImpl implements CourseService {
 
         return Result.ok().message("获取院系成功").data(map);
     }
+
+    @Override
+    public Result getAllUnverifyCourse() {
+        List<Course> res = mapper.getAllUnverifyCourses();
+        Map<String, Object> map = new HashMap<>();
+        map.put("unverify_course",res);
+        return Result.ok().code(200).message("获取未审核课程成功").data(map);
+    }
+
+    @Override
+    public Result passApplication(String course) {
+        mapper.passCourse(course);
+        return Result.ok().code(200).message("课程通过成功");
+    }
+
+    @Override
+    public Result rejectApplication(String course, String reason) {
+        mapper.rejectCourse(course,reason);
+        return Result.ok().code(200).message("课程审核不通过成功");
+    }
 }

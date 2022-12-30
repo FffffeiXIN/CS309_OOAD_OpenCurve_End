@@ -3,7 +3,9 @@ package com.sustech.service_education.service.video.impl;
 import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
 import com.sustech.commonhandler.exception.SourceNotFoundException;
 import com.sustech.commonutils.Result;
+import com.sustech.commonutils.enums.Code;
 import com.sustech.service_education.entity.Score;
+import com.sustech.service_education.entity.Test;
 import com.sustech.service_education.entity.Video;
 import com.sustech.service_education.mapper.VideoMapper;
 import com.sustech.service_education.service.video.VideoService;
@@ -111,5 +113,29 @@ public class VideoServiceImpl implements VideoService {
             return Result.ok().code(200).message("获取所有学生成绩成功").data(map);
         }
         return Result.error().message("错误");
+    }
+
+    @Override
+    public Result postText(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
+        Video video = mapper.getSessionInfo(course_id, session);
+        if (video!=null){
+            int id = video.getId();
+            mapper.insertTest(id, questionType, title, choices, correct_answer);
+            return Result.ok().code(200).message("题目设置成功");
+        }
+        else return Result.ok().code(Code.RESOURCE_NOT_FOUND.getCode()).message("找不到此课程");
+    }
+
+    @Override
+    public Result getAllTestByCourseAndSession(String course_id, Integer session) {
+        Video video = mapper.getSessionInfo(course_id, session);
+        Map<String,Object> map = new HashMap<>();
+        if (video!=null){
+            int id = video.getId();
+            List<Test> res = mapper.getAllTestBySession(id);
+            map.put("Tests",res);
+            return Result.ok().code(200).message("题目获取成功").data(map);
+        }
+        else return Result.ok().code(Code.RESOURCE_NOT_FOUND.getCode()).message("找不到此课程");
     }
 }
