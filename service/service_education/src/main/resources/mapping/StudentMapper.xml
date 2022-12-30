@@ -15,4 +15,12 @@
     <insert id="insert">
         insert into student (id,password,status) values (#{id},#{password},'normal');
     </insert>
+    
+    <update id="unblockStudent">
+        update status='normal' where id=#{id};
+    </update>
+    
+    <update id="blockStudent">
+        update status='blocked' where id=#{id};
+    </update>
 </mapper>

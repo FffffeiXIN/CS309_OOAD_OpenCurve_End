@@ -13,6 +13,10 @@ public interface StudentMapper {
     void insert(Student student);
 
     List<Student> queryAllStudents();
-
+    
     void updateStudent(Student student);
+    
+    void unblockStudent(Student student);
+    
+    void blockStudent(Student student);
 }

@@ -16,14 +16,14 @@ public class ManageServiceImpl implements ManageService {
     @Override
     public Result blockStudent(String id) {
         Student student = mapper.selectStudentById(id);
-//        student.setLocked(true);
+        mapper.blockStudent(student);
         return Result.ok().message("锁定账户成功").code(200);
     }
 
     @Override
     public Result unblockStudent(String id) {
         Student student = mapper.selectStudentById(id);
-//        student.setLocked(false);
+        mapper.unblockStudent(student);
         return Result.ok().message("解锁账户成功").code(200);
     }
 }

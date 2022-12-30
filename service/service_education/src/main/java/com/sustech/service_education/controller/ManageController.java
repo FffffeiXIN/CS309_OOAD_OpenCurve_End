@@ -1,12 +1,10 @@
 package com.sustech.service_education.controller;
 
 import com.sustech.commonutils.Result;
+import com.sustech.service_education.service.course.CourseService;
 import com.sustech.service_education.service.manage.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManageController {
     @Autowired
     ManageService manageService;
+    @Autowired
+    CourseService courseService;
     
     @PostMapping("/blockStudent")
     public Result blockStudent(String id) {
@@ -23,5 +23,19 @@ public class ManageController {
     @PostMapping("/unblockStudent")
     public Result unblockStudent(String id) {
         return manageService.unblockStudent(id);
+    }
+
+    @GetMapping("/getAllUnverifyCourse")
+    public Result getAllUnverifyCourse(){
+        return courseService.getAllUnverifyCourse();
+    }
+
+    @GetMapping("/passApplication")
+    public Result passApplication(String course){
+        return courseService.passApplication(course);
+    }
+    @GetMapping("/rejectApplication")
+    public Result rejectApplication(String course, String reason){
+        return courseService.rejectApplication(course,reason);
     }
 }
