@@ -57,13 +57,13 @@ public class AssignmentController {
     public Result getAssignmentById(int assignment_id) {
         // get the assignment and its submissions
         // return assignment & submissions
-        return null;
+        return service.getAssignmentById(assignment_id);
     }
 
     @PostMapping("/updateAssignment")
     public Result updateAssignment(int assignment_id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
         // update by assignment_id
-        return null;
+        return service.updateAssignment(assignment_id,title,course_id,teacher_id,due_date,resubmission_allowed,accept_resubmission_until,requirements,attachment);
     }
 
 }

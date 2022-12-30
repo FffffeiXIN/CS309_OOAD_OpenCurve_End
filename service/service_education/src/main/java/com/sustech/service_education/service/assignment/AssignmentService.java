@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AssignmentService {
@@ -50,6 +51,20 @@ public class AssignmentService {
     public Result updateScore(int assignment_id,String student_id,double score){
         assignmentMapper.updateScore(assignment_id,student_id,score);
         return Result.ok().code(200);
+    }
+
+    public Result getAssignmentById(int id){
+        Assignment assi = assignmentMapper.getAssignmentByID(id);
+        List<Submission> subs = assignmentMapper.selectSubmissionByAssId(id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("assignment",assi);
+        map.put("submissions",subs);
+        return Result.ok().code(200).message("成功").data(map);
+    }
+
+    public Result updateAssignment(int assignment_id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment){
+        assignmentMapper.updateAssignment(assignment_id,title,course_id,teacher_id,due_date,resubmission_allowed,accept_resubmission_until,requirements,attachment);
+        return Result.ok().code(200).message("修改成功");
     }
 
 }

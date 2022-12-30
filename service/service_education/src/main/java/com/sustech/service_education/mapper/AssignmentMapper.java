@@ -29,4 +29,9 @@ public interface AssignmentMapper {
     @Update("update student_assignment set score = #{score} where assignment_id = #{assignment_id} and student_id = #{student_id}")
     void updateScore(int assignment_id,String student_id,double score);
 
+    List<Submission> selectSubmissionByAssId(Integer assignment_id);
+    @Select("select * from assignment_list where id = #{id}")
+    Assignment getAssignmentByID(Integer id);
+
+    void updateAssignment(int assignment_id, String title,String course_id,String teacher_id,String due_date,int resubmission_allowed,String accept_resubmission_until,String requirements,String attachment);
 }
