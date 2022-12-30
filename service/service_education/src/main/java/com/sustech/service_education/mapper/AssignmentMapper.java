@@ -14,11 +14,11 @@ public interface AssignmentMapper {
 
     void addAssignment(String title,String course_id,String teacher_id,String due_date,int resubmission_allowed,String accept_resubmission_until,String requirements,String attachment);
 
-    void addStudentSubmission(int assignment_id,String student_id,String content_url,String text);
+    void addStudentSubmission(int assignment_id,String student_id,String content_url,String text, String submission_date);
 
     Submission selectSubmissionById(int assignment_id, String student_id);
 
-    void updateStudentSubmission(int assignment_id,String student_id,String content_url,String text);
+    void updateStudentSubmission(int assignment_id,String student_id,String content_url,String text, String submission_date);
 
     @Select("select * from assignment_list where course_id in (select course_id from student_course where student_id = #{student_id})")
     List<Assignment> getStudentAssignment(String student_id);
