@@ -5,14 +5,14 @@
 <mapper namespace="com.sustech.service_education.mapper.AssignmentMapper">
 
     <insert id="addAssignment">
-        insert into assignment_list values (#{id},#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements})
+        insert into assignment_list values (#{id},#{title},#{course_id},#{teacher_id},#{due_date},#{resubmission_allowed},#{accept_resubmission_until},#{requirements},#{attachment})
     </insert>
 
     <insert id="addStudentSubmission">
         insert into student_assignment values (#{assignment_id},#{student_id},#{content_url},#{text})
     </insert>
 
-    <select id="selectSubmissionById" resultType="java.util.HashMap">
+    <select id="selectSubmissionById" resultType="com.sustech.service_education.entity.Submission">
         select * from student_assignment where assignment_id = #{assignment_id} and student_id = #{student_id}
     </select>
 
