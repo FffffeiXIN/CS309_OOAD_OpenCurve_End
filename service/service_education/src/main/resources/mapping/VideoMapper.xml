@@ -81,7 +81,18 @@
     </insert>
 
     <select id="getAllTestBySession" resultType="com.sustech.service_education.entity.Test">
-        select * from session_test where session_id = #{sess_id};
+        select *
+        from session_test
+        where session_id = #{sess_id};
     </select>
+
+    <update id="updateTest">
+        update session_test
+        set question_type=#{questionType},
+            title=#{title},
+            choices=#{choices},
+            correct_answer = #{correct_answer}
+        where id = #{id};
+    </update>
 
 </mapper>
