@@ -22,14 +22,12 @@ public class AssignmentService {
         return Result.ok().code(200);
     }
 
-    public Result submitAssignment(int assignment_id, String student_id, String text, List<String> list) {
-        StringBuffer stringBuffer = new StringBuffer();
-        list.forEach(x -> stringBuffer.append(x).append(","));
+    public Result submitAssignment(int assignment_id, String student_id, String text, String content_url, String submission_date) {
         if (assignmentMapper.selectSubmissionById(assignment_id, student_id) == null) {
-            assignmentMapper.addStudentSubmission(assignment_id, student_id, stringBuffer.toString(), text);
+            assignmentMapper.addStudentSubmission(assignment_id, student_id, content_url, text, submission_date);
             return Result.ok().code(200).message("新建提交成功");
         }
-        assignmentMapper.updateStudentSubmission(assignment_id, student_id, stringBuffer.toString(), text);
+        assignmentMapper.updateStudentSubmission(assignment_id, student_id, content_url, text, submission_date);
         return Result.ok().code(200).message("更新提交成功");
     }
 
