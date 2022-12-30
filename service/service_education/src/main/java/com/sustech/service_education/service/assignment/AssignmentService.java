@@ -2,6 +2,8 @@ package com.sustech.service_education.service.assignment;
 
 import com.sustech.commonhandler.exception.SourceNotFoundException;
 import com.sustech.commonutils.Result;
+import com.sustech.service_education.entity.Assignment;
+import com.sustech.service_education.entity.Submission;
 import com.sustech.service_education.mapper.AssignmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,8 @@ public class AssignmentService {
     @Autowired
     AssignmentMapper assignmentMapper;
 
-    public Result addAssignment(int id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements) {
-        assignmentMapper.addAssignment(id, title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements);
+    public Result addAssignment(int id, String title, String course_id, String teacher_id, String due_date, int resubmission_allowed, String accept_resubmission_until, String requirements,String attachment) {
+        assignmentMapper.addAssignment(id, title, course_id, teacher_id, due_date, resubmission_allowed, accept_resubmission_until, requirements,attachment);
         return Result.ok().code(200);
     }
 
@@ -31,8 +33,23 @@ public class AssignmentService {
     }
 
     public Result getSubmission(int assignment_id, String student_id) {
-        HashMap<String, Object> map = assignmentMapper.selectSubmissionById(assignment_id, student_id);
-        if (map == null || map.size() == 0) throw new SourceNotFoundException();
+        List<Submission> list = assignmentMapper.selectSubmissionById(assignment_id, student_id);
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("submission",list);
         return Result.ok().code(200).data(map);
     }
+
+    public List<Assignment> getStudentAssignment(String student_id){
+        return assignmentMapper.getStudentAssignment(student_id);
+    }
+
+    public List<Assignment> getTeacherAssignment(String teacher_id){
+        return assignmentMapper.getTeacherAssignment(teacher_id);
+    }
+
+    public Result updateScore(int assignment_id,String student_id,double score){
+        assignmentMapper.updateScore(assignment_id,student_id,score);
+        return Result.ok().code(200);
+    }
+
 }

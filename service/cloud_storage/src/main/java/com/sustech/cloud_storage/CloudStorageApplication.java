@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EnableSwagger2
-//@EnableWebMvc
+@EnableWebMvc
 public class CloudStorageApplication {
     public static void main(String[] args) {
         SpringApplication.run(CloudStorageApplication.class,args);
