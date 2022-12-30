@@ -19,7 +19,7 @@ public class VideoController {
     }
 
     @PostMapping("/uploadVideoMeta")
-    public Result uploadVideoMeta(String course_id, Integer session, String url, String title, String description, float score) {
+    public Result uploadVideoMeta(String course_id, Integer session, String url, String title, String description, String score) {
         return videoService.storeVideo(course_id, session, url, title, description, score);
     }
 
@@ -33,7 +33,7 @@ public class VideoController {
         return videoService.getSessionInfo(course_id, session);
     }
     @PostMapping("/setVideoScore")
-    public Result setVideoScore(String course_id, Integer session, float score) {
+    public Result setVideoScore(String course_id, Integer session, String score) {
         return videoService.setVideoScore(course_id, session, score);
     }
 
@@ -43,12 +43,12 @@ public class VideoController {
     }
 
     @PostMapping("/updateVideoScore")
-    public Result updateVideoScore(String course_id, Integer session, float score, String user) {
+    public Result updateVideoScore(String course_id, Integer session, String score, String user) {
         return videoService.updateVideoScore(course_id, session, score, user);
     }
 
     @PostMapping("/updateTestScore")
-    public Result updateTestScore(String course_id, Integer session, float score, String user) {
+    public Result updateTestScore(String course_id, Integer session, String score, String user) {
         return videoService.updateTestScore(course_id, session, score, user);
     }
 
