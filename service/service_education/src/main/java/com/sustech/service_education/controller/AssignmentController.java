@@ -55,9 +55,12 @@ public class AssignmentController {
 
     @GetMapping("/getAssignmentById")
     public Result getAssignmentById(int assignment_id) {
-        // get the assignment and its submissions
-        // return assignment & submissions
         return service.getAssignmentById(assignment_id);
+    }
+
+    @GetMapping("/getSubmissionsOfAssignment")
+    public Result getSubmissionsOfAssignment(int assignment_id) {
+        return service.getSubmissionsOfAssignment(assignment_id);
     }
 
     @PostMapping("/updateAssignment")
