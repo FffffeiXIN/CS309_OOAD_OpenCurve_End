@@ -8,6 +8,10 @@
         select * from course;
     </select>
 
+    <select id="getAllUnverifyCourses" resultType="com.sustech.service_education.entity.Course">
+        select * from course where status = 'Unverify';
+    </select>
+
     <select id="getCoursesOfTeacher" resultType="com.sustech.service_education.entity.Course">
     select course.id, course.name, course.credit, course.department, course.info, course.course_type, course.status, course.fee
         from course
@@ -46,16 +50,23 @@
     <select id="getAllDepartments" resultType="java.lang.String">
         select name from department
     </select>
+
     <select id="getStudentsByCourse" resultType="com.sustech.service_education.entity.Student">
         select * from student_course
                  join student on id = student_id
                  where course_id = #{course_id};
     </select>
+
     <select id="getFeeByCourse" resultType="com.sustech.service_education.entity.Course">
         select * from course where id = #{course_id};
     </select>
 
+    <update id="passCourse">
+        update course set status = 'Ongoing' where id = #{course};
+    </update>
 
-
+    <update id="rejectCourse">
+        update course set status = 'Rejected',others = #{reason} where id = #{course};
+    </update>
 
 </mapper>

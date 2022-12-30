@@ -70,7 +70,18 @@
     </insert>
 
     <select id="getScoresBySession" resultType="com.sustech.service_education.entity.Score">
-        select * from stu_session_score where sess_id = #{sess_id};
+        select *
+        from stu_session_score
+        where sess_id = #{sess_id};
+    </select>
+
+    <insert id="insertTest">
+        insert into session_test (session_id, question_type, title, choices, correct_answer)
+        values (#{session_id}, #{questionType}, #{title}, #{choices}, #{correct_answer});
+    </insert>
+
+    <select id="getAllTestBySession" resultType="com.sustech.service_education.entity.Test">
+        select * from session_test where session_id = #{sess_id};
     </select>
 
 </mapper>
