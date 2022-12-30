@@ -58,12 +58,12 @@ public class VideoController {
     }
 
     @PostMapping("/postTest")
-    public Result postText(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
-        return videoService.postText(course_id, session, questionType, title, choices, correct_answer);
+    public Result postTest(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
+        return videoService.postTest(course_id, session, questionType, title, choices, correct_answer);
     }
     @PostMapping("/updateTest")
-    public Result updateText(Integer id, String questionType, String title, String choices, String correct_answer) {
-        return videoService.updateText(id, questionType, title, choices, correct_answer);
+    public Result updateTest(Integer id, String questionType, String title, String choices, String correct_answer) {
+        return videoService.updateTest(id, questionType, title, choices, correct_answer);
     }
 
     @GetMapping("/getAllTestByCourseAndSession")
