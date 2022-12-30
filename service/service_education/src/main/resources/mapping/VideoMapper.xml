@@ -12,8 +12,8 @@
     </select>
 
     <insert id="insertVideo">
-        insert into video (course_id, session, url, title, description)
-        values (#{course_id}, #{session}, #{url}, #{title}, #{description});
+        insert into video (course_id, session, url, title, description, score)
+        values (#{course_id}, #{session}, #{url}, #{title}, #{description}, #{score});
     </insert>
 
     <select id="getSessionsCount" resultType="java.lang.Integer">
@@ -44,7 +44,7 @@
     </select>
 
     <select id="getTestScore" resultType="java.lang.Float">
-        select text_score
+        select test_score
         from stu_session_score
         where sess_id = #{id}
           and stu_id = #{user};
@@ -59,13 +59,13 @@
 
     <update id="updateTestScore">
         update stu_session_score
-        set text_score = #{score}
+        set test_score = #{score}
         where stu_id = #{user}
           and sess_id = #{sess_id};
     </update>
 
     <insert id="insertStuSessScore">
-        insert into stu_session_score (stu_id, sess_id, video_score, text_score)
+        insert into stu_session_score (stu_id, sess_id, video_score, test_score)
         values (#{user}, #{sess_id}, 0, 0);
     </insert>
 
