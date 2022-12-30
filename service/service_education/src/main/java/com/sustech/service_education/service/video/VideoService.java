@@ -13,5 +13,6 @@ public interface VideoService {
     Result updateTestScore(String course_id, Integer session, float score, String user);
     Result getAllScore(String course_id, Integer session);
     Result postText(String course_id, Integer session, String questionType, String title, String choices, String correct_answer);
+    Result updateText(Integer id, String questionType, String title, String choices, String correct_answer);
     Result getAllTestByCourseAndSession(String course_id, Integer session);
 }
