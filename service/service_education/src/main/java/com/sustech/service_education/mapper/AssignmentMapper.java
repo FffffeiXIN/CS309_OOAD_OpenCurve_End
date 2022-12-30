@@ -16,11 +16,11 @@ public interface AssignmentMapper {
 
     void addStudentSubmission(int assignment_id,String student_id,String content_url,String text);
 
-    List<Submission> selectSubmissionById(int assignment_id, String student_id);
+    Submission selectSubmissionById(int assignment_id, String student_id);
 
     void updateStudentSubmission(int assignment_id,String student_id,String content_url,String text);
 
-    @Select("select * from assignment_list where id in (select assignment_id from student_assignment where student_id = #{student_id})")
+    @Select("select * from assignment_list where course_id in (select course_id from student_course where student_id = #{student_id})")
     List<Assignment> getStudentAssignment(String student_id);
 
     @Select("select * from assignment_list where teacher_id = #{teacher_id}")
@@ -30,6 +30,7 @@ public interface AssignmentMapper {
     void updateScore(int assignment_id,String student_id,double score);
 
     List<Submission> selectSubmissionByAssId(Integer assignment_id);
+
     @Select("select * from assignment_list where id = #{id}")
     Assignment getAssignmentByID(Integer id);
 
