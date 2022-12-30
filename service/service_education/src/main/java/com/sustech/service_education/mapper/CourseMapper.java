@@ -11,6 +11,10 @@ public interface CourseMapper {
 
     List<Course> getAllCourses();
 
+    List<Course> getAllUnverifyCourses();
+    void passCourse(String course);
+    void rejectCourse(String course, String reason);
+
     List<Course> getCoursesOfTeacher(String teacher_id);
 
     List<Course> getCoursesOfStudent(String student_id);
