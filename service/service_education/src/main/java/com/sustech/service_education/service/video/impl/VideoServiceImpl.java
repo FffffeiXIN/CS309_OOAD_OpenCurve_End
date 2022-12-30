@@ -34,7 +34,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result storeVideo(String course_id, Integer session, String url, String title, String description, float score) {
+    public Result storeVideo(String course_id, Integer session, String url, String title, String description, String score) {
         int success = mapper.insertVideo(course_id, session, url, title, description, score);
         if (success == 0) {
             throw new DatabaseOperationFailureException();
@@ -63,7 +63,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result setVideoScore(String course_id, Integer session, float score) {
+    public Result setVideoScore(String course_id, Integer session, String score) {
         mapper.setVideoScore(course_id, session, score);
         return Result.ok().code(200).message("视频分数设置成功");
     }
@@ -87,7 +87,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result updateVideoScore(String course_id, Integer session, float score, String user) {
+    public Result updateVideoScore(String course_id, Integer session, String score, String user) {
         Video video = mapper.getSessionInfo(course_id, session);
         int id = video.getId();
         mapper.updateVideoScore(id, user, score);
@@ -95,7 +95,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result updateTestScore(String course_id, Integer session, float score, String user) {
+    public Result updateTestScore(String course_id, Integer session, String score, String user) {
         Video video = mapper.getSessionInfo(course_id, session);
         int id = video.getId();
         mapper.updateTestScore(id, user, score);

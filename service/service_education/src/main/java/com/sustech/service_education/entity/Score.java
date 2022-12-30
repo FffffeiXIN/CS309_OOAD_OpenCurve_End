@@ -7,6 +7,6 @@ public class Score {
     Integer id;
     String stu_id;
     Integer sess_id;
-    float video_score;
-    float text_score;
+    String video_score;
+    String text_score;
 }
