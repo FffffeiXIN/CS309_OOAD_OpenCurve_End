@@ -116,7 +116,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result postText(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
+    public Result postTest(String course_id, Integer session, String questionType, String title, String choices, String correct_answer) {
         Video video = mapper.getSessionInfo(course_id, session);
         if (video!=null){
             int id = video.getId();
