@@ -48,7 +48,7 @@ public class AssignmentService {
 
     public Result updateScore(int assignment_id, String student_id, double score) {
         assignmentMapper.updateScore(assignment_id, student_id, score);
-        return Result.ok().code(200);
+        return Result.ok().code(200).message("打分成功");
     }
 
     public Result getAssignmentById(int id) {

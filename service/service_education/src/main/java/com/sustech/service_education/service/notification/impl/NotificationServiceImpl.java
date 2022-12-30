@@ -39,15 +39,6 @@ public class NotificationServiceImpl implements NotificationService {
         if (success == 0) {
             throw new DatabaseOperationFailureException();
         } else {
-            List<Student> students = courseMapper.getStudentsByCourse(course_id);
-            try {
-                for (Student s : students) {
-                    String email = s.getId();
-                    sendMail(email, course_id, title, content);
-                }
-            } catch (MessagingException | UnknownHostException e) {
-                throw new RuntimeException(e);
-            }
             return Result.ok().message("通知添加成功").code(200);
         }
     }
@@ -110,7 +101,22 @@ public class NotificationServiceImpl implements NotificationService {
         return Result.ok().code(200).message("学生获取通知成功").data(map);
     }
 
-    public String sendMail(String mail, String course_id, String title, String contents) throws MessagingException, UnknownHostException {
+    @Override
+    public Result sendMailToStudents(String course_id, String title, String content) {
+        List<Student> students = courseMapper.getStudentsByCourse(course_id);
+        try {
+            for (Student s : students) {
+                String email = s.getId();
+                sendMail(email, course_id, title, content);
+            }
+        } catch (MessagingException | UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Result.ok().message("邮件发送成功");
+    }
+
+    public void sendMail(String mail, String course_id, String title, String contents) throws MessagingException, UnknownHostException {
         Properties props = new Properties();
         props.put("mail.transport.protocol", "smtps");
         props.put("mail.smtps.host", "smtp.sustech.edu.cn");
@@ -144,8 +150,6 @@ public class NotificationServiceImpl implements NotificationService {
         transport.connect("12012939@mail.sustech.edu.cn", password);
 
         transport.sendMessage(message, message.getAllRecipients());
-
-        return contents;
 
     }
 }

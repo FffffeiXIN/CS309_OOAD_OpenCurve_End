@@ -12,7 +12,7 @@
     </insert>
 
     <insert id="addStudentSubmission">
-        insert into student_assignment
+        insert into student_assignment (assignment_id, student_id, content_url, text, submission_date)
         values (#{assignment_id}, #{student_id}, #{content_url}, #{text}, #{submission_date})
     </insert>
 
