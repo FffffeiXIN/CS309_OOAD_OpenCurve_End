@@ -37,4 +37,9 @@ public class NotificationController {
     public Result addNotification(String title, String course_id, String teacher_id, String modified_date, String content){
         return notificationService.addNotification(title, course_id, teacher_id, modified_date, content);
     }
+
+    @GetMapping("/sendMailToStudents")
+    public Result sendMailToStudents(String course_id, String title, String content) {
+        return notificationService.sendMailToStudents(course_id, title, content);
+    }
 }

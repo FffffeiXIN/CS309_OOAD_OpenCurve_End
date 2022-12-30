@@ -9,4 +9,5 @@ public interface NotificationService {
     Result getNotificationByTeacher(String teacher_id);
     Result getNotificationByManager(String manager_id);
     Result getNotificationByStudent(String student_id);
+    Result sendMailToStudents(String course_id, String title, String content);
 }
