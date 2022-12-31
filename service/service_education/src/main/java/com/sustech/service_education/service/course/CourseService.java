@@ -12,7 +12,12 @@ public interface CourseService {
     Result addCourse(String course_id, String teacher_id, String course_name, String course_department, String course_type, Float credit, String status, Float fees, String info);
 
     Result getAllDepartments();
+
     Result getAllUnverifyCourse();
+
     Result passApplication(String course);
+
     Result rejectApplication(String course,String reason);
+
+    Result enrollCourse(String student_id, String course_id);
 }
