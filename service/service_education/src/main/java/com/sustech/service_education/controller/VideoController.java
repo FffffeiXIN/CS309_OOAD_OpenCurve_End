@@ -42,6 +42,11 @@ public class VideoController {
         return videoService.getScore(course_id, session, user);
     }
 
+    @GetMapping("/getStudentCourseScore")
+    public Result getStudentCourseScore(String course_id, String student_id) {
+        return videoService.getStudentCourseScore(course_id, student_id);
+    }
+
     @PostMapping("/updateVideoScore")
     public Result updateVideoScore(String course_id, Integer session, String score, String user) {
         return videoService.updateVideoScore(course_id, session, score, user);

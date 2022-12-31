@@ -15,12 +15,13 @@ public interface VideoMapper {
     Integer getSessionsCount(String course_id);
     Video getSessionInfo(String course_id, Integer session);
     void setVideoScore(String course_id, Integer session, String score);
-    Float getVideoScore(Integer id, String user);
-    Float getTestScore(Integer id, String user);
+    String getVideoScore(Integer id, String user);
+    String getTestScore(Integer id, String user);
     void updateVideoScore(Integer sess_id, String user, String score);
     void updateTestScore(Integer sess_id, String user, String score);
     void insertStuSessScore(Integer sess_id, String user);
     List<Score> getScoresBySession(Integer sess_id);
+    List<Score> getStudentCourseScore(String course_id, String student_id);
     void insertTest(Integer session_id, String questionType, String title, String choices, String correct_answer);
     void updateTest(Integer id, String questionType, String title, String choices, String correct_answer);
     List<Test> getAllTestBySession(Integer sess_id);
