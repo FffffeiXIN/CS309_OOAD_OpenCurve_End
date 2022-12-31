@@ -12,8 +12,8 @@
     </insert>
 
     <insert id="addStudentSubmission">
-        insert into student_assignment
-        values (#{assignment_id}, #{student_id}, #{content_url}, #{text})
+        insert into student_assignment (assignment_id, student_id, content_url, text, submission_date)
+        values (#{assignment_id}, #{student_id}, #{content_url}, #{text}, #{submission_date})
     </insert>
 
     <select id="selectSubmissionById" resultType="com.sustech.service_education.entity.Submission">
@@ -26,7 +26,8 @@
     <update id="updateStudentSubmission">
         update student_assignment
         set content_url = #{content_url},
-            text        = #{text}
+            text        = #{text},
+            submission_date = #{submission_date}
         where assignment_id = #{assignment_id} } and student_id = #{student_id}
     </update>
 
