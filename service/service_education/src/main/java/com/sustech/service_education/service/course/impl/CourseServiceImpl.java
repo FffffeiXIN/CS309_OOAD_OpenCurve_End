@@ -3,6 +3,7 @@ package com.sustech.service_education.service.course.impl;
 import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_education.entity.Course;
+import com.sustech.service_education.entity.Student;
 import com.sustech.service_education.mapper.CourseMapper;
 import com.sustech.service_education.service.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +96,22 @@ public class CourseServiceImpl implements CourseService {
         else {
             return Result.ok().code(200).message("报名课程成功");
         }
+    }
+
+    @Override
+    public Result getStudentsOfCourse(String course_id) {
+        List<Student> students = mapper.getStudentsByCourse(course_id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("students", students);
+        return Result.ok().code(200).message("获取课程学生成功").data(map);
+    }
+
+    @Override
+    public Result removeStudentFromCourse(String course_id, String student_id) {
+        int success = mapper.removeStudentFromCourse(course_id, student_id);
+        if (success == 0) {
+            throw new DatabaseOperationFailureException();
+        }
+        return Result.ok().code(200).message("移除学生成功");
     }
 }

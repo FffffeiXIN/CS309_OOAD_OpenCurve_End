@@ -36,14 +36,14 @@
           and session = #{session};
     </update>
 
-    <select id="getVideoScore" resultType="java.lang.Float">
+    <select id="getVideoScore" resultType="java.lang.String">
         select video_score
         from stu_session_score
         where sess_id = #{id}
           and stu_id = #{user};
     </select>
 
-    <select id="getTestScore" resultType="java.lang.Float">
+    <select id="getTestScore" resultType="java.lang.String">
         select test_score
         from stu_session_score
         where sess_id = #{id}
@@ -94,5 +94,15 @@
             correct_answer = #{correct_answer}
         where id = #{id};
     </update>
+
+    <select id="getStudentCourseScore" resultType="com.sustech.service_education.entity.Score">
+        select stu_session_score.id as id, stu_id, sess_id, video_score, test_score
+        from stu_session_score
+                 join
+             (select id
+              from video
+              where course_id = #{course_id}) as table_1 on sess_id = table_1.id
+        where stu_id = #{student_id}
+    </select>
 
 </mapper>

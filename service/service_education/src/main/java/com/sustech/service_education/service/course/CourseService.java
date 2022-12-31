@@ -20,4 +20,8 @@ public interface CourseService {
     Result rejectApplication(String course,String reason);
 
     Result enrollCourse(String student_id, String course_id);
+
+    Result getStudentsOfCourse(String course_id);
+
+    Result removeStudentFromCourse(String course_id, String student_id);
 }

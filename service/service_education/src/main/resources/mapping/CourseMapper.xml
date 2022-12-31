@@ -74,4 +74,9 @@
         update course set status = 'Rejected',others = #{reason} where id = #{course};
     </update>
 
+    <delete id="removeStudentFromCourse">
+        delete
+        from student_course
+        where course_id = #{course_id} and student_id = #{student_id};
+    </delete>
 </mapper>
