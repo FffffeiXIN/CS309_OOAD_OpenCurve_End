@@ -9,4 +9,5 @@ public class Submission {
     String content_url;
     String text;
     Double score;
+    String submission_date;
 }

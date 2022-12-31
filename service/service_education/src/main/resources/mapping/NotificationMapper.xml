@@ -5,7 +5,7 @@
 <mapper namespace="com.sustech.service_education.mapper.NotificationMapper">
 
     <insert id="addNotification" >
-        insert into notification (title,course_id,sender_id,modified_time,content)
+        insert into notification (title,course_id,sender_id,modified_date,content)
         values (#{title},#{course_id},#{sender_id},#{modified_date},#{content});
     </insert>
 

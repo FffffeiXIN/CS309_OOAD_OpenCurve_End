@@ -13,7 +13,7 @@ public class Notification {
 
     String sender_id;
 
-    String modified_time;
+    String modified_date;
 
     String content;
 }
