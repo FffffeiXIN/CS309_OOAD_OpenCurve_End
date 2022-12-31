@@ -85,4 +85,15 @@ public class CourseServiceImpl implements CourseService {
         mapper.rejectCourse(course,reason);
         return Result.ok().code(200).message("课程审核不通过成功");
     }
+
+    @Override
+    public Result enrollCourse(String student_id, String course_id) {
+        int success = mapper.addCourseStudentRelation(course_id, student_id);
+        if (success == 0) {
+            throw new DatabaseOperationFailureException();
+        }
+        else {
+            return Result.ok().code(200).message("报名课程成功");
+        }
+    }
 }

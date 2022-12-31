@@ -38,4 +38,9 @@ public class CourseController{
     public Result getAllDepartments() {
         return courseService.getAllDepartments();
     }
+
+    @PostMapping("/enrollCourse")
+    public Result enrollCourse(String student_id, String course_id) {
+        return courseService.enrollCourse(student_id, course_id);
+    }
 }
