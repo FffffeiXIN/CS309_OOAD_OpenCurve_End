@@ -20,14 +20,14 @@ public class BarrageServiceImpl implements BarrageService {
     BarrageMapper mapper;
 
     @Override
-    public Result saveBarrage(int video_id, String text, int time) {
-        mapper.insertBarrage(video_id,text,time);
+    public Result saveBarrage(String course_id,int session, String text, int time) {
+        mapper.insertBarrage(course_id,session,text,time);
         return Result.ok();
     }
 
     @Override
-    public Result getBarrage(int video_id) {
-        List<Barrage> list = mapper.selectBarrage(video_id);
+    public Result getBarrage(String course_id,int session) {
+        List<Barrage> list = mapper.selectBarrage(course_id,session);
         list.sort(Comparator.comparingInt(Barrage::getTime));
         Map<String,Object> map=new HashMap<>();
         map.put("barrage",list);
