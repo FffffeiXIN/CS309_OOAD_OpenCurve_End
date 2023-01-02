@@ -11,11 +11,11 @@ import java.util.List;
 public interface BarrageMapper {
 
 
-    @Insert("insert into barrage(video_id,text,time) values (#{video_id},#{text},#{time})")
-    void insertBarrage(int video_id,String text,int time);
+    @Insert("insert into barrage(video_id,text,time) values (#{course_id},#{session},#{text},#{time})")
+    void insertBarrage(String course_id,int session,String text,int time);
 
-    @Select("select * from barrage where video_id = #{video_id}")
-    List<Barrage> selectBarrage(int video_id);
+    @Select("select * from barrage where video_id = #{course_id} and session = #{session}")
+    List<Barrage> selectBarrage(String course_id,int session);
 
 
 }

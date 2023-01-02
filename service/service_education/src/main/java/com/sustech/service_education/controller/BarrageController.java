@@ -16,13 +16,13 @@ public class BarrageController {
     private BarrageServiceImpl service;
 
     @GetMapping("save")
-    public Result saveBarrage(int video_id,String text,int time){
-        return service.saveBarrage(video_id,text,time);
+    public Result saveBarrage(String course_id,int session,String text,int time){
+        return service.saveBarrage(course_id,session,text,time);
     }
 
     @GetMapping("list")
-    public Result getBarrage(int video_id){
-        return service.getBarrage(video_id);
+    public Result getBarrage(String course_id,int session){
+        return service.getBarrage(course_id,session);
     }
 
 }
