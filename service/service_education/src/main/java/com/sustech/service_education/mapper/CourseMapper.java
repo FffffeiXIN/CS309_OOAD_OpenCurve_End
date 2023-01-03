@@ -31,5 +31,7 @@ public interface CourseMapper {
 
     Course getFeeByCourse(String course_id);
 
+    int addCourseStudentRelation(String course_id, String student_id);
 
+    int removeStudentFromCourse(String course_id, String student_id);
 }

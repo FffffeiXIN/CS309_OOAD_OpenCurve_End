@@ -38,4 +38,19 @@ public class CourseController{
     public Result getAllDepartments() {
         return courseService.getAllDepartments();
     }
+
+    @PostMapping("/enrollCourse")
+    public Result enrollCourse(String student_id, String course_id) {
+        return courseService.enrollCourse(student_id, course_id);
+    }
+
+    @GetMapping("/getStudentsOfCourse")
+    public Result getStudentsOfCourse(String course_id) {
+        return courseService.getStudentsOfCourse(course_id);
+    }
+
+    @PostMapping("/removeStudentFromCourse")
+    public Result removeStudentFromCourse(String course_id, String student_id) {
+        return courseService.removeStudentFromCourse(course_id, student_id);
+    }
 }

@@ -47,6 +47,11 @@
         values (#{teacher_id}, #{course_id});
     </insert>
 
+    <insert id="addCourseStudentRelation">
+        insert into student_course (student_id, course_id)
+        values (#{student_id}, #{course_id});
+    </insert>
+
     <select id="getAllDepartments" resultType="java.lang.String">
         select name from department
     </select>
@@ -69,4 +74,9 @@
         update course set status = 'Rejected',others = #{reason} where id = #{course};
     </update>
 
+    <delete id="removeStudentFromCourse">
+        delete
+        from student_course
+        where course_id = #{course_id} and student_id = #{student_id};
+    </delete>
 </mapper>

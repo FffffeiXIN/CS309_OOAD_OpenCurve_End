@@ -144,4 +144,15 @@ public class VideoServiceImpl implements VideoService {
         }
         else return Result.ok().code(Code.RESOURCE_NOT_FOUND.getCode()).message("找不到此课程");
     }
+
+    @Override
+    public Result getStudentCourseScore(String course_id, String student_id) {
+        List<Score> scores = mapper.getStudentCourseScore(course_id, student_id);
+        Map<String,Object> map = new HashMap<>();
+        if (scores.size() != 0) {
+            map.put("scores", scores);
+            return Result.ok().code(200).message("学生成绩获取成功").data(map);
+        }
+        return Result.ok().code(Code.RESOURCE_NOT_FOUND.getCode()).message("学生成绩暂无成绩");
+    }
 }
