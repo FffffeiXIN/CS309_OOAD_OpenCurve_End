@@ -40,8 +40,9 @@ public class PayController {
     @PostMapping("/callback")
     public void callback(String out_trade_no){
         payService.paySuccess(out_trade_no);
-        String course_id = out_trade_no.split("/$")[0];
-        String student_id = out_trade_no.split("/$")[1];
-        courseService.ad
+        System.out.println("111");
+        String course_id = out_trade_no.split("\\$")[0];
+        String student_id = out_trade_no.split("\\$")[1];
+        courseService.enrollCourse(student_id,course_id);
     }
 }

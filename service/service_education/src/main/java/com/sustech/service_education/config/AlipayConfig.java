@@ -30,7 +30,7 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1dJGkvOybqaN09uCEa3c8e68r6rEdw3tuRL3ulyXP9GtfGfSUJMIT/h8Oj4FLlY0KWqIaAUeLaDFzf1AwLWNYUNkSa7PlhkUsa5hT4Lk7bs8uTYZeav/izqOVERdBT7ZDqtHZY9BtJMEbiqyn8dps9KLInhZH4cfUytZq58TfM9zYpVUL2vgVaQSatxlIuyeQsAI9+YT0E7mEpRLsCex1nsjxmS3E/RH9OfHkEQk/7hSm2zvjlPUFmyE1lUN5cRMm77ZQZxnkTbryQd4Z/usSCKZjFZk7DK5u0ZlGTRaIHfdUH3DiZSVWft9HOEJvGjetMei7cbFukY9qWdit8cExwIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://127.0.0.1:8080/callback/notify";
+    public static String notify_url = "http://localhost:8080/education/pay/callback";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url = "http://localhost:9000/userPage/StudentCourseCenter";
