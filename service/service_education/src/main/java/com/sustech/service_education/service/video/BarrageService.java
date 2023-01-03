@@ -4,7 +4,7 @@ import com.sustech.commonutils.Result;
 
 public interface BarrageService {
 
-    Result saveBarrage(String course_id,int session,String text,int time);
+    Result saveBarrage(int session_id, String text, double time);
 
-    Result getBarrage(String course_id,int session);
+    Result getBarrage(int session_id);
 }

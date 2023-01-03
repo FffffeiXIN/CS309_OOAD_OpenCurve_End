@@ -20,17 +20,16 @@ public class BarrageServiceImpl implements BarrageService {
     BarrageMapper mapper;
 
     @Override
-    public Result saveBarrage(String course_id,int session, String text, int time) {
-        mapper.insertBarrage(course_id,session,text,time);
-        return Result.ok();
+    public Result saveBarrage(int session_id, String text, double time) {
+        mapper.insertBarrage(session_id, text, time);
+        return Result.ok().code(200).message("弹幕存储成功");
     }
 
     @Override
-    public Result getBarrage(String course_id,int session) {
-        List<Barrage> list = mapper.selectBarrage(course_id,session);
-        list.sort(Comparator.comparingInt(Barrage::getTime));
-        Map<String,Object> map=new HashMap<>();
-        map.put("barrage",list);
+    public Result getBarrage(int session_id) {
+        List<Barrage> list = mapper.selectBarrage(session_id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("barrages", list);
         return Result.ok().code(200).data(map);
     }
 }
