@@ -75,6 +75,4 @@ public class VideoController {
     public Result getAllTestByCourseAndSession(String course_id, Integer session) {
         return videoService.getAllTestByCourseAndSession(course_id, session);
     }
-
-
 }
