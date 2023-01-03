@@ -9,4 +9,5 @@ public interface PayMapper {
     Order getOrderById(String orderId);
     void addOrder(Order order);
     void deleteOrder(String orderId);
+    void updateState(String orderId);
 }

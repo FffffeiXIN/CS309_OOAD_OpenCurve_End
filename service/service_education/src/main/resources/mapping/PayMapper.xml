@@ -14,4 +14,8 @@
         values (#{OrderId},#{createTime},#{finalUpdateTime},#{CourseId},#{userId},#{payType},#{status});
     </insert>
 
+    <update id="updateState">
+        update orders set status = '已支付' where id = #{orderId};
+    </update>
+
 </mapper>

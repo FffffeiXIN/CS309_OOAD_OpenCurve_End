@@ -38,7 +38,7 @@ public abstract class AbstractPaymentService implements PayService {
             order.setFinalUpdateTime(LocalDate.now().toString());
             order.setUserId(userId);
             order.setCourseId(courseId);
-            order.setStatus("已支付");
+            order.setStatus("未支付");
             doCreateOrder(order);
             payMapper.addOrder(order);
             Map<String,Object> data = new HashMap<>();
@@ -47,6 +47,9 @@ public abstract class AbstractPaymentService implements PayService {
         }else {
             throw new DuplicateOrderException();
         }
+    }
+    public void paySuccess(String orderId){
+        payMapper.updateState(orderId);
     }
 
     public abstract void doCreateOrder(Order order);

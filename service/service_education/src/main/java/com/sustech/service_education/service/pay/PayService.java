@@ -12,4 +12,5 @@ public interface PayService {
     String purchase(String orderId, HttpServletRequest request, HttpServletResponse response) throws AlipayApiException, IOException;
 
     Result createOrder(String courseId, String userId);
+    public void paySuccess(String orderId);
 }
