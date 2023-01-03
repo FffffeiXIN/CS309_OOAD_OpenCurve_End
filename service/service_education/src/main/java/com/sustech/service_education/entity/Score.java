@@ -8,5 +8,5 @@ public class Score {
     String stu_id;
     Integer sess_id;
     String video_score;
-    String text_score;
+    String test_score;
 }
