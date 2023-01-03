@@ -9,6 +9,6 @@ public class Barrage {
 
     private int id;
     private String text;
-    private int time;
-    private int video_id;
+    private float time;
+    private int session_id;
 }

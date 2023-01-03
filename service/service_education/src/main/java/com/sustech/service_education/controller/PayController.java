@@ -37,7 +37,7 @@ public class PayController {
 //        return Result.ok().code(200).message("支付成功!").data(data);
     }
 
-    @PostMapping("/callback")
+    @GetMapping("/callback")
     public void callback(String out_trade_no){
         payService.paySuccess(out_trade_no);
         System.out.println("111");

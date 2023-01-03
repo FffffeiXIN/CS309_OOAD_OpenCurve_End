@@ -4,25 +4,24 @@ import com.sustech.commonutils.Result;
 import com.sustech.service_education.service.video.BarrageService;
 import com.sustech.service_education.service.video.impl.BarrageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("barrage")
+@CrossOrigin
+@RequestMapping("/education/barrage")
 public class BarrageController {
 
     @Autowired
     private BarrageServiceImpl service;
 
-    @GetMapping("save")
-    public Result saveBarrage(String course_id,int session,String text,int time){
-        return service.saveBarrage(course_id,session,text,time);
+    @PostMapping("/save")
+    public Result saveBarrage(int session_id, String text, double time) {
+        return service.saveBarrage(session_id, text, time);
     }
 
-    @GetMapping("list")
-    public Result getBarrage(String course_id,int session){
-        return service.getBarrage(course_id,session);
+    @GetMapping("/list")
+    public Result getBarrage(int session_id) {
+        return service.getBarrage(session_id);
     }
 
 }
