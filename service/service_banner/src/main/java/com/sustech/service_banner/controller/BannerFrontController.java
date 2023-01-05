@@ -21,12 +21,12 @@ public class BannerFrontController {
     @Autowired
     BannerService service;
     
-    @GetMapping("getBanner")
-    public Result getBanner(Integer currentPage, Integer limit){
-        Page page= service.getPage(currentPage,limit);
-        Map<String, Object> map=new HashMap<>();
-        map.put("pages",page.getUrls());
-        map.put("total",page.getTotalNum());
-        return Result.ok().code(200).message("").data(map);
-    }
+//    @GetMapping("getBanner")
+//    public Result getBanner(Integer currentPage, Integer limit){
+//        Page page= service.getPage(currentPage,limit);
+//        Map<String, Object> map=new HashMap<>();
+//        map.put("pages",page.getUrls());
+//        map.put("total",page.getTotalNum());
+//        return Result.ok().code(200).message("").data(map);
+//    }
 }

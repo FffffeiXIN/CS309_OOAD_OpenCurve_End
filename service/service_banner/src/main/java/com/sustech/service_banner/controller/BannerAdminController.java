@@ -10,24 +10,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/banner/admin")
+@RequestMapping("/banner")
 public class BannerAdminController {
-
     @Qualifier("BannerAdminService")
     @Autowired
     BannerService service;
 
     @GetMapping("getBanner")
-    public Result getBanner(Integer currentPage,Integer limit){
-        Page page= service.getPage(currentPage,limit);
-        Map<String, Object> map=new HashMap<>();
-        map.put("pages",page.getUrls());
-        map.put("total",page.getTotalNum());
-        return Result.ok().code(200).message("").data(map);
+    public Result getBanner(){
+        return service.getBanners();
     }
 
     @GetMapping("delBanner")
@@ -40,8 +37,8 @@ public class BannerAdminController {
         System.out.print("3");
         Banner banner=new Banner();
         banner.setUrl(url);
-        banner.setGroup(group);
-        banner.setPath(path);
+//        banner.setGroup(group);
+//        banner.setPath(path);
         return service.insertBanner(banner);
     }
 }

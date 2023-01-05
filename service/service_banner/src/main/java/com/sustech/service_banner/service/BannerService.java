@@ -4,9 +4,11 @@ import com.sustech.service_banner.entity.Banner;
 import com.sustech.service_banner.entity.Page;
 import com.sustech.commonutils.Result;
 
+import java.util.List;
+
 public interface BannerService {
 
-    Page getPage(int currentPage,int limit);
+    Result getBanners();
 
     Result deleteBanner(String url);
 

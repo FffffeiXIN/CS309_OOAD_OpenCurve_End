@@ -12,4 +12,8 @@
         delete from banner where url = #{url};
     </delete>
 
+    <select id="getAllBanner" resultType="com.sustech.service_banner.entity.Banner">
+        select * from banner;
+    </select>
+
 </mapper>

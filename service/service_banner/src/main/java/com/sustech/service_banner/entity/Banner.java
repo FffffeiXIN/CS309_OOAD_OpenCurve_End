@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 public class Banner {
     String url;
-    String group;
-    String path;
+    String course_id;
 }
