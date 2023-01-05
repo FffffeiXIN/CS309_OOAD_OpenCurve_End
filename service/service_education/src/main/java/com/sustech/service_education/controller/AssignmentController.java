@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/education/assignment")
-@Api(tags = "接口测试")
+//@Api(tags = "接口测试")
 public class AssignmentController {
     @Autowired
     AssignmentService service;

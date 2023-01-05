@@ -15,6 +15,11 @@ public class Student{
     String status;
     Integer failTime =0;
     String picture_url;
+    String birthday;
+    String gender;
+    String region;
+    String address;
+    String online;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
     }

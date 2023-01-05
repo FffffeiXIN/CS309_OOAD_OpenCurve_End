@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/education/login")
-@Api(tags = {"接口测试"})
+//@Api(tags = {"接口测试"})
 @CrossOrigin
 public class LoginController {
     @Autowired
@@ -28,5 +28,10 @@ public class LoginController {
             return loginService.teacherLogin(userId,content,loginWay);
         else
             return loginService.managerLogin(userId,content,loginWay);
+    }
+
+    @GetMapping("/exit")
+    public Result exit(String userId, String userType){
+        return loginService.Exit(userId,userType);
     }
 }

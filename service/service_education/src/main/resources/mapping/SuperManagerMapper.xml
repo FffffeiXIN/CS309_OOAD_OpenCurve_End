@@ -18,7 +18,18 @@
     </select>
 
     <insert id="insert">
-        insert into manager (id,password) values (#{id},#{password});
+        insert into manager (id,password,online) values (#{id},#{password},'False');
     </insert>
+
+    <update id="updateOnline">
+        update manager
+        set online = 'True'
+        where id = #{id};
+    </update>
+    <update id="updateOffline">
+        update manager
+        set online = 'False'
+        where id = #{id};
+    </update>
 
 </mapper>

@@ -5,6 +5,7 @@ import com.sustech.service_education.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
 @Mapper
 public interface SuperManagerMapper {
     SuperManager selectManagerById(String id);
@@ -14,4 +15,8 @@ public interface SuperManagerMapper {
     List<SuperManager> queryAllManagers();
 
     void updateManager(SuperManager Manager);
+
+    void updateOnline(String id);
+
+    void updateOffline(String id);
 }
