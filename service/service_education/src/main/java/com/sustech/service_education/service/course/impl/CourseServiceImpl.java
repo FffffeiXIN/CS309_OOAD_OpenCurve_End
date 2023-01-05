@@ -68,11 +68,19 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Result getAllUnverifyCourse() {
-        List<Course> res = mapper.getAllUnverifyCourses();
+    public Result getAllUnverifiedCourse() {
+        List<Course> res = mapper.getAllUnverifiedCourses();
         Map<String, Object> map = new HashMap<>();
-        map.put("unverify_course",res);
+        map.put("unverified_courses",res);
         return Result.ok().code(200).message("获取未审核课程成功").data(map);
+    }
+
+    @Override
+    public Result getAllExistingCourse() {
+        List<Course> res = mapper.getAllExistingCourses();
+        Map<String, Object> map = new HashMap<>();
+        map.put("existing_courses", res);
+        return Result.ok().code(200).message("获取已存在课程成功").data(map);
     }
 
     @Override

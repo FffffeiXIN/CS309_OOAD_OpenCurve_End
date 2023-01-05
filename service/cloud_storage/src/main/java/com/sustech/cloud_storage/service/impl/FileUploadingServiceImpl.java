@@ -4,16 +4,16 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.PutObjectRequest;
+import com.qcloud.cos.utils.IOUtils;
 import com.sustech.cloud_storage.service.FileUploadingService;
 import com.sustech.cloud_storage.util.OSSConfig;
+import org.apache.http.entity.ContentType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.mock.web.MockMultipartFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.ArrayList;
 
 @Service
 public class FileUploadingServiceImpl implements FileUploadingService {
@@ -51,5 +51,123 @@ public class FileUploadingServiceImpl implements FileUploadingService {
             }
         }
         return url;
+    }
+    
+    @Override
+    public String uploadVideo(MultipartFile file) {
+        String tempPath = "D:\\";
+        String fileName = file.getOriginalFilename();
+        fileName = tempPath + fileName;
+        InputStream inputStream = null;
+        FileOutputStream fileOut = null;
+        String urls = "";
+        try {
+            inputStream = file.getInputStream();
+            fileOut = new FileOutputStream(fileName);
+            IOUtils.copy(inputStream, fileOut);
+            fileOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (fileOut != null) {
+                    fileOut.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            compressVideo(fileName, fileName + "_medium.mkv", 2);
+            File compressed = new File(fileName + "_medium.mkv");
+            FileInputStream is = new FileInputStream(compressed);
+            MultipartFile multipartFile = new MockMultipartFile(compressed.getName(), compressed.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(), is);
+            urls = urls + "`" +this.upload(multipartFile);
+            
+            compressVideo(fileName, fileName + "_low.mkv", 3);
+            compressed = new File(fileName + "_low.mkv");
+            is = new FileInputStream(compressed);
+            multipartFile = new MockMultipartFile(compressed.getName(), compressed.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(), is);
+            urls = urls + "`" +this.upload(multipartFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        urls = urls + "`" + this.upload(file);
+        return urls;
+    }
+    
+    private int getBitRate(String videoPath) throws IOException {
+        String ffprobePath = new File("").getAbsolutePath() + "\\";
+        File ffprobe = new File(ffprobePath + "ffprobe.exe");
+        if (!ffprobe.exists() && !ffprobe.canExecute()) {
+            System.err.println("Check if ffprobe.exe exists in the project root directory and is executable!");
+        }
+        Runtime run = Runtime.getRuntime();
+        String command = ffprobePath + "ffprobe.exe -show_streams -i " + videoPath + " 2>nul | findstr /B bit_rate";
+        Process p = run.exec(new String[]{
+                "cmd",
+                "/c",
+                command
+        }, null, new File(ffprobePath));
+        int br = 0;
+        try (InputStream err = p.getErrorStream()) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(err));
+            String str = reader.readLine();
+            while(str != null) {
+                System.out.println(str);
+                str = reader.readLine();
+            }
+            reader.close();
+        }
+        try (InputStream ret = p.getInputStream()) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(ret));
+            String str = reader.readLine();
+            while (str == null || !str.startsWith("bit_rate=")) {
+                str = reader.readLine();
+            }
+            if (str.startsWith("bit_rate=")) {
+                br = Integer.parseInt(str.replace("bit_rate=", ""));
+            }
+        }
+        return br;
+    }
+    
+    private void compressVideo(String input, String output, int compressFactor) throws IOException {
+        String ffmpegPath = new File("").getAbsolutePath() + "\\";
+        File ffmpeg = new File(ffmpegPath + "ffmpeg.exe");
+        if (!ffmpeg.exists() && !ffmpeg.canExecute()) {
+            System.err.println("Check if ffmpeg.exe exists in the project root directory and is executable!");
+        }
+        ArrayList<String> command = new ArrayList<>();
+        command.add(ffmpegPath + "ffmpeg.exe");
+        command.add("-i");
+        command.add(input);
+        command.add("-b:v");
+        command.add(getBitRate(input)/1000/compressFactor + "k");
+        command.add(output);
+        ProcessBuilder builder = new ProcessBuilder(command);
+        Process process;
+        try {
+            process = builder.start();
+            try (InputStream stderr = process.getErrorStream()) {
+                BufferedReader errReader = new BufferedReader(new InputStreamReader(stderr));
+                String l;
+                while ((l = errReader.readLine()) != null) {
+                    System.out.println(l);
+                }
+            }
+            try (InputStream stdout = process.getInputStream()) {
+                BufferedReader errReader = new BufferedReader(new InputStreamReader(stdout));
+                String l;
+                while ((l = errReader.readLine()) != null) {
+                    System.out.println(l);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

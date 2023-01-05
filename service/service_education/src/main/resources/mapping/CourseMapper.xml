@@ -8,8 +8,12 @@
         select * from course;
     </select>
 
-    <select id="getAllUnverifyCourses" resultType="com.sustech.service_education.entity.Course">
-        select * from course where status = 'Unverify';
+    <select id="getAllUnverifiedCourses" resultType="com.sustech.service_education.entity.Course">
+        select * from course where status = 'Unverified';
+    </select>
+
+    <select id="getAllExistingCourses" resultType="com.sustech.service_education.entity.Course">
+        select * from course where status = 'Ongoing'
     </select>
 
     <select id="getCoursesOfTeacher" resultType="com.sustech.service_education.entity.Course">
