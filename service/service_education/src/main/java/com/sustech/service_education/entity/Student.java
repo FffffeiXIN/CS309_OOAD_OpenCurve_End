@@ -19,6 +19,7 @@ public class Student{
     String gender;
     String region;
     String address;
+    String online;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
     }
