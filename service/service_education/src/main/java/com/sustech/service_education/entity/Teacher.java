@@ -10,6 +10,7 @@ public class Teacher{
     String name;
     String department;
     String password;
+    String picture_url;
     String status;
     Integer failTime =0;
     String online;
