@@ -13,7 +13,9 @@ public interface CourseService {
 
     Result getAllDepartments();
 
-    Result getAllUnverifyCourse();
+    Result getAllUnverifiedCourse();
+
+    Result getAllExistingCourse();
 
     Result passApplication(String course);
 

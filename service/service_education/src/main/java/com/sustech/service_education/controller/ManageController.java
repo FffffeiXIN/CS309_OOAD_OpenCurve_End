@@ -25,9 +25,14 @@ public class ManageController {
         return manageService.unblockStudent(id);
     }
 
-    @GetMapping("/getAllUnverifyCourse")
-    public Result getAllUnverifyCourse(){
-        return courseService.getAllUnverifyCourse();
+    @GetMapping("/getAllUnverifiedCourses")
+    public Result getAllUnverifiedCourse(){
+        return courseService.getAllUnverifiedCourse();
+    }
+
+    @GetMapping("/getAllExistingCourses")
+    public Result getAllExistingCourses() {
+        return courseService.getAllExistingCourse();
     }
 
     @GetMapping("/passApplication")
