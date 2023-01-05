@@ -12,8 +12,8 @@
     </select>
 
     <insert id="insertVideo">
-        insert into video (course_id, session, url, title, description, score)
-        values (#{course_id}, #{session}, #{url}, #{title}, #{description}, #{score});
+        insert into video (course_id, session, url, medium_url, low_url, title, description, score)
+        values (#{course_id}, #{session}, #{url}, #{medium_url}, #{low_url}, #{title}, #{description}, #{score});
     </insert>
 
     <select id="getSessionsCount" resultType="java.lang.Integer">
