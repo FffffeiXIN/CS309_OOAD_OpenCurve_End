@@ -13,6 +13,7 @@ public class Teacher{
     String status;
     Integer failTime =0;
     String online;
+    String gender;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
     }
