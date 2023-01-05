@@ -28,6 +28,11 @@ public class NotificationController {
         return notificationService.getNotificationByManager(manager_id);
     }
 
+    @GetMapping("/getAllNotifications")
+    public Result getAllNotifications() {
+        return notificationService.getAllNotifications();
+    }
+
     @GetMapping("/getNotificationByStudent")
     public Result getNotificationByStudent(String student_id){
         return notificationService.getNotificationByStudent(student_id);
