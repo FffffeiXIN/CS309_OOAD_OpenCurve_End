@@ -9,6 +9,7 @@ public class SuperManager {
     String name = null;
     String password = null;
     String department;
+    String online;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
     }
