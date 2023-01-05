@@ -101,6 +101,10 @@ public class FileUploadingServiceImpl implements FileUploadingService {
     
     private int getBitRate(String videoPath) throws IOException {
         String ffprobePath = new File("").getAbsolutePath() + "\\";
+        File ffprobe = new File(ffprobePath + "ffprobe.exe");
+        if (!ffprobe.exists() && !ffprobe.canExecute()) {
+            System.err.println("Check if ffprobe.exe exists in the project root directory and is executable!");
+        }
         Runtime run = Runtime.getRuntime();
         String command = ffprobePath + "ffprobe.exe -show_streams -i " + videoPath + " 2>nul | findstr /B bit_rate";
         Process p = run.exec(new String[]{
@@ -133,6 +137,10 @@ public class FileUploadingServiceImpl implements FileUploadingService {
     
     private void compressVideo(String input, String output, int compressFactor) throws IOException {
         String ffmpegPath = new File("").getAbsolutePath() + "\\";
+        File ffmpeg = new File(ffmpegPath + "ffmpeg.exe");
+        if (!ffmpeg.exists() && !ffmpeg.canExecute()) {
+            System.err.println("Check if ffmpeg.exe exists in the project root directory and is executable!");
+        }
         ArrayList<String> command = new ArrayList<>();
         command.add(ffmpegPath + "ffmpeg.exe");
         command.add("-i");
