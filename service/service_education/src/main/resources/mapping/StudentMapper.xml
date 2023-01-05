@@ -5,22 +5,41 @@
 
 <mapper namespace="com.sustech.service_education.mapper.StudentMapper">
     <select id="queryAllStudents" resultType="com.sustech.service_education.entity.Student">
-        select * from student;
+        select *
+        from student;
     </select>
 
     <select id="selectStudentById" resultType="com.sustech.service_education.entity.Student">
-        select * from student where id = #{id};
+        select *
+        from student
+        where id = #{id};
     </select>
 
     <insert id="insert">
-        insert into student (id,password,status) values (#{id},#{password},'normal');
+        insert into student (id, password, status)
+        values (#{id}, #{password}, 'normal');
     </insert>
-    
+
     <update id="unblockStudent">
-        update status='normal' where id=#{id};
+        update status='normal'
+        where id=#{id};
     </update>
-    
+
     <update id="blockStudent">
-        update status='blocked' where id=#{id};
+        update status='blocked'
+        where id=#{id};
+    </update>
+
+    <update id="update">
+        update student
+        set name = #{name},
+            department = #{department},
+            college = #{college},
+            grade = #{grade},
+            picture_url = #{picture_url},
+            birthday = #{birthday},
+            gender = #{gender},
+            region = #{region},
+            address = #{address} where id = #{id};
     </update>
 </mapper>
