@@ -19,4 +19,6 @@ public interface StudentMapper {
     void unblockStudent(Student student);
     
     void blockStudent(Student student);
+
+    void update(String id,String name, String department, String college, String grade, String picture_url, String birthday, String gender, String region, String address);
 }
