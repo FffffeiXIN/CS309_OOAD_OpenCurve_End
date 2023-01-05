@@ -22,7 +22,14 @@ public class FileUploadingController {
     @ApiOperation(value = "上传文件至云端")
     @PostMapping("uploading")
     public Result upload(MultipartFile file){
-        String url= fileUploadingService.upload(file);
+        String url = fileUploadingService.upload(file);
         return Result.ok().addData("url",url);
+    }
+    
+    @ApiOperation(value = "压缩并上传视频到云端")
+    @PostMapping("video")
+    public Result uploadVideo(MultipartFile file) {
+        String url = fileUploadingService.uploadVideo(file);
+        return Result.ok().addData("url", url);
     }
 }
