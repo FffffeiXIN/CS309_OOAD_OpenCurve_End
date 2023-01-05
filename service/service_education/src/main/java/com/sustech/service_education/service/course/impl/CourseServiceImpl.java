@@ -9,6 +9,7 @@ import com.sustech.service_education.service.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ public class CourseServiceImpl implements CourseService {
 
         return Result.ok().message("获取教师课程成功").data(map);
     }
+
 
     @Override
     public Result getCoursesOfStudent(String student_id) {
@@ -70,16 +72,28 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Result getAllUnverifiedCourse() {
         List<Course> res = mapper.getAllUnverifiedCourses();
+        List<String> teachers = new ArrayList<>();
+        for (Course c :
+                res) {
+            teachers.add(mapper.getTeacherOfCourse(c.getId()));
+        }
         Map<String, Object> map = new HashMap<>();
         map.put("unverified_courses",res);
+        map.put("teachers", teachers);
         return Result.ok().code(200).message("获取未审核课程成功").data(map);
     }
 
     @Override
     public Result getAllExistingCourse() {
         List<Course> res = mapper.getAllExistingCourses();
+        List<String> teachers = new ArrayList<>();
+        for (Course c :
+                res) {
+            teachers.add(mapper.getTeacherOfCourse(c.getId()));
+        }
         Map<String, Object> map = new HashMap<>();
         map.put("existing_courses", res);
+        map.put("teachers", teachers);
         return Result.ok().code(200).message("获取已存在课程成功").data(map);
     }
 

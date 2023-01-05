@@ -15,6 +15,8 @@ public interface CourseMapper {
 
     List<Course> getAllExistingCourses();
 
+    String getTeacherOfCourse(String course_id);
+
     void passCourse(String course);
     void rejectCourse(String course, String reason);
 

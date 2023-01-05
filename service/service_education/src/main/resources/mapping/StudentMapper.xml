@@ -21,12 +21,14 @@
     </insert>
 
     <update id="unblockStudent">
-        update status='normal'
+        update student
+            set status = 'normal'
         where id=#{id};
     </update>
 
     <update id="blockStudent">
-        update status='blocked'
+        update student
+        set status = 'blocked'
         where id=#{id};
     </update>
 
