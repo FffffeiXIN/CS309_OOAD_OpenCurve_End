@@ -4,21 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.service_education.mapper.TeacherMapper">
 
-<!--    <resultMap id="TeacherMapper" type="com.sustech.service_education.entity.Teacher">-->
-<!--        <result column="" property=""/>-->
-<!--    </resultMap>-->
+    <!--    <resultMap id="TeacherMapper" type="com.sustech.service_education.entity.Teacher">-->
+    <!--        <result column="" property=""/>-->
+    <!--    </resultMap>-->
 
     <select id="getAllTeachers" resultType="com.sustech.service_education.entity.Teacher">
-        select * from teacher
+        select *
+        from teacher
     </select>
 
 
     <select id="selectTeacherByEmail" resultType="com.sustech.service_education.entity.Teacher">
-        select * from teacher where id = #{Email};
+        select *
+        from teacher
+        where id = #{Email};
     </select>
 
     <insert id="insert">
-        insert into teacher (id,password,status,online) values (#{id},#{password},'normal','False');
+        insert into teacher (id, password, status, online)
+        values (#{id}, #{password}, 'normal', 'False');
     </insert>
 
     <update id="updateOnline">
@@ -30,6 +34,14 @@
         update teacher
         set online = 'False'
         where id = #{id};
+    </update>
+
+    <update id="updateTeacher">
+        update teacher
+        set name = #{name},
+        department = #{department},
+        gender = #{gender},
+        picture_url = #{picture_url} where id = #{userId};
     </update>
 
 </mapper>

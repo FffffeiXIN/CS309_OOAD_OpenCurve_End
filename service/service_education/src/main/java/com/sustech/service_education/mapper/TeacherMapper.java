@@ -13,7 +13,7 @@ public interface TeacherMapper {
 
     List<Teacher> getAllTeachers();
 
-    void updateTeacher(Teacher teacher);
+    void updateTeacher(String userId, String name, String department, String gender, String picture_url);
 
     void updateOnline(String id);
 
