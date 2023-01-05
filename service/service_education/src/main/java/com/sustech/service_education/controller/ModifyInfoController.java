@@ -18,7 +18,7 @@ public class ModifyInfoController {
     }
 
     @GetMapping("/getInfo")
-    public Result getInfo(String id){
-        return modifyInfoService.getInfo(id);
+    public Result getInfo(String id,String userType){
+        return modifyInfoService.getInfo(id,userType);
     }
 }
