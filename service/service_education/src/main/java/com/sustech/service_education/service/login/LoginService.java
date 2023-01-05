@@ -14,5 +14,5 @@ public interface LoginService {
     Result studentLogin(String username,String content, String type);
     Result teacherLogin(String username,String content, String type);
     Result managerLogin(String username,String content, String type);
-
+    Result Exit(String username);
 }

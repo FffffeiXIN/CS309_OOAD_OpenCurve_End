@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 
 @RestController
 @RequestMapping("/education/register")
-@Api(tags = {"接口测试"})
+//@Api(tags = {"接口测试"})
 @CrossOrigin
 public class RegisterController {
     @Autowired
