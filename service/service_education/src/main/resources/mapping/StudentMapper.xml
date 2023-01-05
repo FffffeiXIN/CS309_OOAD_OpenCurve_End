@@ -16,8 +16,8 @@
     </select>
 
     <insert id="insert">
-        insert into student (id, password, status)
-        values (#{id}, #{password}, 'normal');
+        insert into student (id, password, status, online)
+        values (#{id}, #{password}, 'normal', 'False');
     </insert>
 
     <update id="unblockStudent">
@@ -41,5 +41,16 @@
             gender = #{gender},
             region = #{region},
             address = #{address} where id = #{id};
+    </update>
+
+    <update id="updateOnline">
+        update student
+        set online = 'True'
+            where id = #{id};
+    </update>
+    <update id="updateOffline">
+        update student
+        set online = 'False'
+            where id = #{id};
     </update>
 </mapper>

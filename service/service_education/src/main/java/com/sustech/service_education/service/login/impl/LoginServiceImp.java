@@ -63,8 +63,10 @@ public class LoginServiceImp implements LoginService {
         Map<String,Object> map=new HashMap<>();
         map.put("user",student);
         if (type.equals("Password")){
-            if(student.comparePassword(content))
+            if(student.comparePassword(content)){
+                studentMapper.updateOnline(username);
                 return Result.ok().message("密码登陆成功").code(200).data(map);
+            }
             else
                 return Result.error().message("密码错误").code(Code.LOGIN_ERROR.getCode());
         }
@@ -102,12 +104,21 @@ public class LoginServiceImp implements LoginService {
         Map<String,Object> map=new HashMap<>();
         map.put("user",manager);
         if (type.equals("Password")){
-            if(manager.comparePassword(content))
+            if(manager.comparePassword(content)){
                 return Result.ok().message("密码登陆成功").code(200).data(map);
+            }
             else
                 return Result.error().message("密码错误").code(Code.LOGIN_ERROR.getCode());
         }
         else
             return Result.ok().message("验证码登陆成功").code(200).data(map);
     }
+
+    @Override
+    public Result Exit(String username) {
+        studentMapper.updateOffline(username);
+        return Result.ok().code(200).message("用户退出成功");
+    }
+
+
 }
