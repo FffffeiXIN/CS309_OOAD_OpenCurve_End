@@ -54,69 +54,79 @@ public class LoginServiceImp implements LoginService {
     @Override
     public Result studentLogin(String username, String content, String type) {
         Student student = studentMapper.selectStudentById(username);
-        if (student == null){
+        if (student == null) {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此用户不存在");
         }
-        if (!student.getStatus().equals("normal")){
+        if (!student.getStatus().equals("normal")) {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此账号被冻结");
         }
-        Map<String,Object> map=new HashMap<>();
-        map.put("user",student);
-        if (type.equals("Password")){
-            if(student.comparePassword(content)){
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", student);
+        if (type.equals("Password")) {
+            if (student.comparePassword(content)) {
                 studentMapper.updateOnline(username);
                 return Result.ok().message("密码登陆成功").code(200).data(map);
-            }
-            else
+            } else
                 return Result.error().message("密码错误").code(Code.LOGIN_ERROR.getCode());
-        }
-        else
+        } else {
+            studentMapper.updateOnline(username);
             return Result.ok().message("验证码登陆成功").code(200).data(map);
+        }
+
     }
 
     @Override
     public Result teacherLogin(String username, String content, String type) {
         Teacher teacher = teacherMapper.selectTeacherByEmail(username);
-        if (teacher == null){
+        if (teacher == null) {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此用户不存在");
         }
-        if (!teacher.getStatus().equals("normal")){
+        if (!teacher.getStatus().equals("normal")) {
+            teacherMapper.updateOnline(username);
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此账号被冻结");
         }
-        Map<String,Object> map=new HashMap<>();
-        map.put("user",teacher);
-        if (type.equals("Password")){
-            if(teacher.comparePassword(content))
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", teacher);
+        if (type.equals("Password")) {
+            if (teacher.comparePassword(content))
                 return Result.ok().message("密码登陆成功").code(200).data(map);
             else
                 return Result.error().message("密码错误").code(Code.LOGIN_ERROR.getCode());
-        }
-        else
+        } else {
+            teacherMapper.updateOnline(username);
             return Result.ok().message("验证码登陆成功").code(200).data(map);
+        }
+
     }
 
     @Override
     public Result managerLogin(String username, String content, String type) {
         SuperManager manager = managerMapper.selectManagerById(username);
-        if (manager == null){
+        if (manager == null) {
             return Result.error().code(Code.LOGIN_ERROR.getCode()).message("此用户不存在");
         }
-        Map<String,Object> map=new HashMap<>();
-        map.put("user",manager);
-        if (type.equals("Password")){
-            if(manager.comparePassword(content)){
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", manager);
+        if (type.equals("Password")) {
+            if (manager.comparePassword(content)) {
+                managerMapper.updateOnline(username);
                 return Result.ok().message("密码登陆成功").code(200).data(map);
-            }
-            else
+            } else
                 return Result.error().message("密码错误").code(Code.LOGIN_ERROR.getCode());
-        }
-        else
+        } else {
+            managerMapper.updateOnline(username);
             return Result.ok().message("验证码登陆成功").code(200).data(map);
+        }
+
     }
 
     @Override
-    public Result Exit(String username) {
-        studentMapper.updateOffline(username);
+    public Result Exit(String username, String userType) {
+        if (userType.equals("Student")) {
+            studentMapper.updateOffline(username);
+        } else if (userType.equals("Teacher")) {
+            teacherMapper.updateOffline(username);
+        } else managerMapper.updateOffline(username);
         return Result.ok().code(200).message("用户退出成功");
     }
 

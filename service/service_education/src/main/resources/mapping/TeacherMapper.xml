@@ -18,7 +18,18 @@
     </select>
 
     <insert id="insert">
-        insert into teacher (id,password,status) values (#{id},#{password},'normal');
+        insert into teacher (id,password,status,online) values (#{id},#{password},'normal','False');
     </insert>
+
+    <update id="updateOnline">
+        update teacher
+        set online = 'True'
+        where id = #{id};
+    </update>
+    <update id="updateOffline">
+        update teacher
+        set online = 'False'
+        where id = #{id};
+    </update>
 
 </mapper>

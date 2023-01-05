@@ -31,7 +31,7 @@ public class LoginController {
     }
 
     @GetMapping("/exit")
-    public Result exit(String userId){
-        return loginService.Exit(userId);
+    public Result exit(String userId, String userType){
+        return loginService.Exit(userId,userType);
     }
 }

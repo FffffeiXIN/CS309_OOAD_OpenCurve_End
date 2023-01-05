@@ -1,4 +1,5 @@
 package com.sustech.service_education.mapper;
+
 import com.sustech.service_education.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,5 +14,9 @@ public interface TeacherMapper {
     List<Teacher> getAllTeachers();
 
     void updateTeacher(Teacher teacher);
+
+    void updateOnline(String id);
+
+    void updateOffline(String id);
 
 }
