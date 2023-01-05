@@ -41,6 +41,10 @@
         from department where name = #{department_name};
     </select>
 
+    <select id="getTeacherOfCourse" resultType="java.lang.String">
+        select teacher_id from teacher_course where course_id = #{course_id}
+    </select>
+
     <insert id="addCourse">
         insert into course (id, name, credit, department, course_type, status, fee, info)
         values (#{course_id}, #{course_name}, #{credit}, #{department}, #{course_type}, #{status}, #{fee}, #{info});

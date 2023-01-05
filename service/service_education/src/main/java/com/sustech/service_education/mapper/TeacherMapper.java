@@ -19,4 +19,8 @@ public interface TeacherMapper {
 
     void updateOffline(String id);
 
+    void blockTeacher(String id);
+
+    void unblockTeacher(String id);
+
 }

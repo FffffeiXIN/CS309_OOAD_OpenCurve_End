@@ -44,6 +44,15 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
+    public Result getAllNotifications() {
+        List<Notification> notifications = notificationMapper.getAllNotifications();
+        Map<String, Object> map = new HashMap<>();
+        map.put("notifications", notifications);
+
+        return Result.ok().message("获取全部通知成功").data(map);
+    }
+
+    @Override
     public Result getNotificationsByCourse(String course_id) {
         List<Notification> notifications = notificationMapper.getNotificationByCourse(course_id);
 

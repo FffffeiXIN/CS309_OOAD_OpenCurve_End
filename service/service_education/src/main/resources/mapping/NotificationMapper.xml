@@ -13,6 +13,9 @@
         select * from notification where course_id = #{course_id};
     </select>
 
+    <select id="getAllNotifications" resultType="com.sustech.service_education.entity.Notification">
+        select * from notification;
+    </select>
 <!--    <select id="getNotificationByTeacher" resultType="com.sustech.service_education.entity.Notification">-->
 <!--        select * from notification where course_id = #{course_id};-->
 <!--    </select>-->

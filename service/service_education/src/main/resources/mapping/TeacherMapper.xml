@@ -13,6 +13,17 @@
         from teacher
     </select>
 
+    <update id="unblockTeacher">
+        update teacher
+        set status = 'normal'
+        where id=#{id};
+    </update>
+
+    <update id="blockTeacher">
+        update teacher
+        set status = 'blocked'
+        where id=#{id};
+    </update>
 
     <select id="selectTeacherByEmail" resultType="com.sustech.service_education.entity.Teacher">
         select *

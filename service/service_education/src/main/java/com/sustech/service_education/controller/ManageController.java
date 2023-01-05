@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/manage")
+@RequestMapping("/education/manage")
 public class ManageController {
     @Autowired
     ManageService manageService;
@@ -25,6 +25,16 @@ public class ManageController {
         return manageService.unblockStudent(id);
     }
 
+    @PostMapping("/blockTeacher")
+    public Result blockTeacher(String id) {
+        return manageService.blockTeacher(id);
+    }
+
+    @PostMapping("/unblockTeacher")
+    public Result unblockTeacher(String id) {
+        return manageService.unblockTeacher(id);
+    }
+
     @GetMapping("/getAllUnverifiedCourses")
     public Result getAllUnverifiedCourse(){
         return courseService.getAllUnverifiedCourse();
@@ -39,8 +49,19 @@ public class ManageController {
     public Result passApplication(String course){
         return courseService.passApplication(course);
     }
+
     @GetMapping("/rejectApplication")
     public Result rejectApplication(String course, String reason){
         return courseService.rejectApplication(course,reason);
+    }
+
+    @GetMapping("/getTeachersInfo")
+    public Result getTeachersInfo() {
+        return manageService.getTeachersInfo();
+    }
+
+    @GetMapping("/getStudentsInfo")
+    public Result getStudentsInfo() {
+        return manageService.getStudentsInfo();
     }
 }

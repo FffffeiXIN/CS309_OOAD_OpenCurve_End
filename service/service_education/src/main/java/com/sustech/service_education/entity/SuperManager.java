@@ -10,6 +10,7 @@ public class SuperManager {
     String password = null;
     String department;
     String online;
+    String picture_url;
     public boolean comparePassword(String password) {
         return password.equals(this.password);
     }
