@@ -10,6 +10,8 @@ public class Video {
     Integer session;
     String title;
     String url;
+    String medium_url;
+    String low_url;
     String description;
     float score;
 }
