@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface BannerMapper {
 
-    int insertBanner(Banner banner);
+    int insertBanner(String url, String course_id);
 
     int deleteBanner(String url);
 

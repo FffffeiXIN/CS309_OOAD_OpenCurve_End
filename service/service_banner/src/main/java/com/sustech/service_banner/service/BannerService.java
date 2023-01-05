@@ -12,6 +12,6 @@ public interface BannerService {
 
     Result deleteBanner(String url);
 
-    Result insertBanner(Banner banner);
+    Result insertBanner(String url, String course_id);
 
 }

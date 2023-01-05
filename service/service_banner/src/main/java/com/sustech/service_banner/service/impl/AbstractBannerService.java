@@ -1,18 +1,21 @@
 package com.sustech.service_banner.service.impl;
 
+import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_banner.entity.Banner;
 import com.sustech.service_banner.entity.Page;
 import com.sustech.service_banner.mapper.BannerMapper;
 import com.sustech.service_banner.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public abstract class AbstractBannerService implements BannerService {
+@Service
+public class AbstractBannerService implements BannerService {
     @Autowired
     protected BannerMapper mapper;
 
@@ -32,16 +35,24 @@ public abstract class AbstractBannerService implements BannerService {
 
     @Override
     public Result deleteBanner(String url) {
-        return doDelete(url);
+        if(mapper.deleteBanner(url) == 0) {
+            throw new DatabaseOperationFailureException();
+        } else {
+            return Result.ok().message("轮播图数据删除成功").code(200);
+        }
     }
 
     @Override
-    public Result insertBanner(Banner banner) {
-        
-        return doInsert(banner);
+    public Result insertBanner(String url, String course_id) {
+
+        if(mapper.insertBanner(url,course_id) == 0) {
+            throw new DatabaseOperationFailureException();
+        } else {
+            return Result.ok().message("轮播图数据存储成功").code(200);
+        }
     }
-    
-    public abstract Result doInsert(Banner banner);
-    
-    public abstract Result doDelete(String url);
+
+//    public abstract Result doInsert(Banner banner);
+//
+//    public abstract Result doDelete(String url);
 }

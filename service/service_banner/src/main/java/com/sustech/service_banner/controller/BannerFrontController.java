@@ -17,7 +17,7 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/banner")
 public class BannerFrontController {
-    @Qualifier("BannerFrontService")
+//    @Qualifier("BannerFrontService")
     @Autowired
     BannerService service;
     

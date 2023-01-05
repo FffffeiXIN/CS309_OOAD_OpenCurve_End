@@ -5,7 +5,7 @@
 <mapper namespace="com.sustech.service_banner.mapper.BannerMapper">
 
     <insert id="insertBanner">
-        insert into banner (url, "group", path) values (#{url}, #{group}, #{path});
+        insert into banner (url, course_id) values (#{url}, #{course_id});
     </insert>
 
     <delete id="deleteBanner">
