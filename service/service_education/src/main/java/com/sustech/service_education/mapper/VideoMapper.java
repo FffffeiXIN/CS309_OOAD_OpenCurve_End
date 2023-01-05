@@ -6,12 +6,11 @@ import com.sustech.service_education.entity.Score;
 import com.sustech.service_education.entity.Test;
 import com.sustech.service_education.entity.Video;
 import org.apache.ibatis.annotations.Mapper;
-import org.yaml.snakeyaml.emitter.ScalarAnalysis;
 
 @Mapper
 public interface VideoMapper {
     Video getVideoByKey(String course_id, Integer session);
-    int insertVideo(String course_id, Integer session, String url, String title, String description, String score);
+    int insertVideo(String course_id, Integer session, String url, String medium_url, String low_url, String title, String description, String score);
     Integer getSessionsCount(String course_id);
     Video getSessionInfo(String course_id, Integer session);
     void setVideoScore(String course_id, Integer session, String score);

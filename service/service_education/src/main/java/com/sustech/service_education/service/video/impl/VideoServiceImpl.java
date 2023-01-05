@@ -34,8 +34,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Result storeVideo(String course_id, Integer session, String url, String title, String description, String score) {
-        int success = mapper.insertVideo(course_id, session, url, title, description, score);
+    public Result storeVideo(String course_id, Integer session, String url, String medium_url, String low_url, String title, String description, String score) {
+        int success = mapper.insertVideo(course_id, session, url, medium_url, low_url, title, description, score);
         if (success == 0) {
             throw new DatabaseOperationFailureException();
         } else {

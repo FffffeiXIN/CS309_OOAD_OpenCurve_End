@@ -20,7 +20,14 @@ public class VideoController {
 
     @PostMapping("/uploadVideoMeta")
     public Result uploadVideoMeta(String course_id, Integer session, String url, String title, String description, String score) {
-        return videoService.storeVideo(course_id, session, url, title, description, score);
+        String medium_url = null, low_url = null;
+        String[] urls = url.split("`");
+        if (urls.length == 4) {
+            url = urls[1];
+            medium_url = urls[2];
+            low_url = urls[3];
+        }
+        return videoService.storeVideo(course_id, session, url, medium_url, low_url, title, description, score);
     }
 
     @GetMapping("/getSessionsCount")

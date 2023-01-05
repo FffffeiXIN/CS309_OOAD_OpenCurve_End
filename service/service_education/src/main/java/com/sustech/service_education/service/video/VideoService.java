@@ -4,7 +4,7 @@ import com.sustech.commonutils.Result;
 
 public interface VideoService {
     Result getVideo(String course_id, Integer session);
-    Result storeVideo(String course_id, Integer session, String url, String title, String description, String score);
+    Result storeVideo(String course_id, Integer session, String url, String medium_url, String low_url, String title, String description, String score);
     Result getSessionsCount(String course_id);
     Result getSessionInfo(String course_id, Integer session);
     Result setVideoScore(String course_id, Integer session, String score);
