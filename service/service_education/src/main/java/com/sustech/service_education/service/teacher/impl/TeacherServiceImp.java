@@ -26,4 +26,10 @@ public class TeacherServiceImp implements TeacherService {
 
         return Result.ok().message("获取全部教师成功").data(map);
     }
+
+    @Override
+    public Result updateInfo(String userId, String name, String department, String gender, String picture_url) {
+        mapper.updateTeacher(userId,name,department,gender,picture_url);
+        return Result.ok().message("老师信息更新成功").code(200);
+    }
 }

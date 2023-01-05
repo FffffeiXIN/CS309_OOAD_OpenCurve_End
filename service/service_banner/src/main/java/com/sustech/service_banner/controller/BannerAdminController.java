@@ -44,7 +44,4 @@ public class BannerAdminController {
         banner.setPath(path);
         return service.insertBanner(banner);
     }
-
-
-
 }
