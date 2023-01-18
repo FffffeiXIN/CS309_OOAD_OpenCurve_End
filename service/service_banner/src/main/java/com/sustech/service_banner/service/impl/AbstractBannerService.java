@@ -3,7 +3,6 @@ package com.sustech.service_banner.service.impl;
 import com.sustech.commonhandler.exception.DatabaseOperationFailureException;
 import com.sustech.commonutils.Result;
 import com.sustech.service_banner.entity.Banner;
-import com.sustech.service_banner.entity.Page;
 import com.sustech.service_banner.mapper.BannerMapper;
 import com.sustech.service_banner.service.BannerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,7 @@ public class AbstractBannerService implements BannerService {
         List<Banner> res = mapper.getAllBanner();
         int len = res.size();
         int start = random.nextInt(0,len-3);
+        System.out.println(start);
         Map<String, Object> map=new HashMap<>();
         map.put("Banner1",res.get(start));
         map.put("Banner2",res.get(start+1));
@@ -51,8 +51,4 @@ public class AbstractBannerService implements BannerService {
             return Result.ok().message("轮播图数据存储成功").code(200);
         }
     }
-
-//    public abstract Result doInsert(Banner banner);
-//
-//    public abstract Result doDelete(String url);
 }
